@@ -1,3 +1,9 @@
 ul {
     list-style-type: none;
 }
+li{
+    margin-bottom: 1em;
+}
+#partner{
+    object-fit: cover;
+}
