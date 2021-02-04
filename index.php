@@ -19,5 +19,31 @@ $f3->route('GET /', function() {
     $view = new Template();
     echo $view->render('views/home.html');
 });
+
+//define an personal information route
+$f3->route('GET /register', function () {
+    $view = new Template();
+    echo $view->render('views/personal-form.html');
+});
+
+//define profile form route
+$f3->route('GET /profile', function () {
+    $view = new Template();
+    echo $view->render('views/profile-form.html');
+});
+
+//define an interests form route
+$f3->route('GET /interests', function () {
+    $view = new Template();
+    echo $view->render('views/interests-form.html');
+});
+
+//define profile summary route
+$f3->route('GET /summary', function () {
+    $view = new Template();
+    echo $view->render('views/summary.html');
+});
+
+
 //run fat free
 $f3->run();
