@@ -2,9 +2,71 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
+
+    <!-- CSS (Make sure Bootstrap is first) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/jpg" href="images/petLogo.png">
 </head>
 <body>
 
+<!-- *********** Navigation Bar ********** -->
+<nav class="navbar navbar-expand bg-light">
+    <a class = "navbar-brand text-dark font-italic" href="{{ @BASE }}">4 Paws Only</a>
+    <a class="nav-link text-right" href="#">Log In</a>
+</nav>
+
+<!-- *********** Profile Information Form ********** -->
+<div class="container">
+    <div class="border">
+        <h2>Profile</h2>
+        <hr>
+        <form action= "interests" method="post">
+            <div class=" row">
+                <div class="col-md-6">
+                    <fieldset>
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" id="email" name="email">
+
+                        <label for="state">State</label>
+                        <input type="text" class="form-control" id="state" name="state">
+                    </fieldset>
+
+                    <div class="form-group">
+                        <label class="control-label">Seeking</label>
+                        <div>
+                            <label><input type="radio"
+                                          name="gender"
+                                          id="male"
+                                          value="male"> Male
+                                </input></label>
+                            <label><input type="radio"
+                                          name="gender"
+                                          id="female"
+                                          value="female"> Female
+                                </input></label>
+                        </div>
+                    </div>
+
+                </div> <!-- column -->
+                <div class="col-sm-6">
+                    <fieldset>
+                        <label for="bio">Biography</label>
+                        <textarea class="form-control" id="bio" name="bio" rows="5"></textarea>
+                    </fieldset>
+
+                </div> <!-- column -->
+            </div> <!--Row -->
+            <div class="float-right">
+                <input class="form-control btn btn-primary"
+                       type="submit" value="Next">
+            </div>
+        </form>
+
+    </div>
+</div> <!--container -->
 </body>
 </html>

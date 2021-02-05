@@ -33,7 +33,7 @@ $f3->route('POST /profile', function () {
 });
 
 //define an interests form route
-$f3->route('GET /interests', function () {
+$f3->route('POST /interests', function () {
     $view = new Template();
     echo $view->render('views/interests-form.html');
 });
