@@ -2,9 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
+
+    <!-- CSS (Make sure Bootstrap is first) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/jpg" href="images/petLogo.png">
 </head>
 <body>
+
+<!-- *********** Navigation Bar ********** -->
+<nav class="navbar navbar-expand bg-light">
+    <a class = "navbar-brand text-dark font-italic" href="{{ @BASE }}">4 Paws Only</a>
+    <a class="nav-link text-right" href="#">Log In</a>
+</nav>
+
+<!-- *********** Profile Summary ********** -->
+<div class="container">
+    <form method="get" action="interests">
+        <div class="row">
+
+            <div class="col-6">
+                <p>Pet Name: {{ @SESSION.pname }}</p>
+                <p>Age: {{ @SESSION.age }}</p>
+                <p>Seeking: {{ @SESSION.seeking }}</p>
+                <p>Interests: {{ @SESSION.indoor }}, {{ @SESSION.outdoor}}</p>
+
+                <p>Owner: {{ @SESSION.fname }}</p>
+                <p>Phone: {{ @SESSION.phone }}</p>
+                <p>Email: {{ @SESSION.email }}</p>
+                <p>State: {{ @SESSION.state }}</p>
+
+            </div>
+
+            <div class="col-6">
+                <img src="images/pawprint.jpg" class="rounded img-fluid" alt= "Paw print">
+                <p>Biography</p>
+                <p>{{ @SESSION.bio }}</p>
+            </div>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>
