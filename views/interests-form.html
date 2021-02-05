@@ -2,9 +2,74 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Profile</title>
+
+    <!-- CSS (Make sure Bootstrap is first) -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <!-- favicon -->
+    <link rel="icon" type="image/jpg" href="images/petLogo.png">
 </head>
 <body>
+
+<!-- *********** Navigation Bar ********** -->
+<nav class="navbar navbar-expand bg-light">
+    <a class = "navbar-brand text-dark font-italic" href="{{ @BASE }}">4 Paws Only</a>
+    <a class="nav-link text-right" href="#">Log In</a>
+</nav>
+
+<!-- *********** Profile Information Form ********** -->
+<div class="container">
+    <div class="border">
+        <h2>Interests</h2>
+        <hr>
+
+    <form action="summary" method="post">
+        <div class="form-group">
+            <label class="control-label">Indoor Interests:</label>
+            <div>
+                    <input type="checkbox" id="tv" name="indoor[]" value="tv">
+                    <label for="tv">TV</label>
+                    <input type="checkbox" id="groom" name="indoor[]" value="groom">
+                    <label for="groom">Grooming</label>
+                    <input type="checkbox" id="sleep" name="indoor[]" value="sleep">
+                    <label for="sleep">Sleeping on the couch</label>
+                    <input type="checkbox" id="treats" name="indoor[]" value="treats">
+                    <label for="treats">Treats</label>
+                <input type="checkbox" id="learning" name="indoor[]" value="learning">
+                <label for="learning">Learning new commands</label>
+                <input type="checkbox" id="window" name="indoor[]" value="window">
+                <label for="window">Window watching</label>
+            </div> <!-- row -->
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Outdoor Interests:</label>
+            <div>
+                <input type="checkbox" id="fetch" name="outdoor[]" value="fetch">
+                <label for="fetch">Playing Fetch</label>
+                <input type="checkbox" id="walks" name="outdoor[]" value="walks">
+                <label for="walks">Going on walks</label>
+                <input type="checkbox" id="chase" name="outdoor[]" value="chase">
+                <label for="chase">Chasing squirrels/birds</label>
+                <input type="checkbox" id="sun" name="outdoor[]" value="sun">
+                <label for="sun">Sunbathing</label>
+                <input type="checkbox" id="swim" name="outdoor[]" value="swim">
+                <label for="swim">Anything water!</label>
+                <input type="checkbox" id="tugowar" name="outdoor[]" value="tugowar">
+                <label for="tugowar">Tug of War</label>
+            </div> <!-- row -->
+        </div>
+
+        <div class="float-right">
+            <input class="form-control btn btn-primary"
+                   type="submit" value="Next">
+        </div>
+
+    </form>
+    </div>
+</div>
 
 </body>
 </html>
