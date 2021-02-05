@@ -27,7 +27,7 @@ $f3->route('GET /register', function () {
 });
 
 //define profile form route
-$f3->route('GET /profile', function () {
+$f3->route('POST /profile', function () {
     $view = new Template();
     echo $view->render('views/profile-form.html');
 });
