@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>4 Paws Only</title>
+    <title>Register</title>
 
     <!-- CSS (Make sure Bootstrap is first) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -19,5 +19,68 @@
     <a class="nav-link text-right" href="#">Log In</a>
 </nav>
 
+<!-- *********** Personal Information Form ********** -->
+<div class="container">
+    <div class="border">
+    <h2>Personal Information</h2>
+    <hr>
+    <form action = "profile" method="post">
+    <div class=" row">
+        <div class="col-8">
+            <fieldset>
+                <legend>Owner Information</legend>
+
+                <label for="fname">First Name</label>
+                <input type="text" class="form-control" id="fname" name="fname">
+
+                <label for="lname">Last Name</label>
+                <input type="text" class="form-control" id="lname" name="lname">
+
+                <label for="phone">Phone Number</label>
+                <input type="text" class="form-control" id="phone" name="phone">
+
+            </fieldset>
+            <fieldset>
+                <legend>Pet Information</legend>
+
+                <label for="pname">Name</label>
+                <input type="text" class="form-control" id="pname" name="pname">
+
+                <label for="age">Age</label>
+                <input type="text" class="form-control" id="age" name="age">
+            </fieldset>
+
+            <div class="form-group">
+                <label class="control-label">Gender</label>
+                <div>
+                    <label><input type="radio"
+                                  name="gender"
+                                  id="male"
+                                  value="male"> Male
+                        </input></label>
+                    <label><input type="radio"
+                                  name="gender"
+                                  id="female"
+                                  value="female"> Female
+                        </input></label>
+                </div>
+            </div>
+
+        </div> <!-- column -->
+        <div class="col-4">
+            <div class="bg-light border">
+                <p><span class="font-weight-bold">Note:</span> All information entered is protected by our <a href = "#">privacy policy</a>.
+                Profile information can only be viewed by others with your permission</p>
+            </div>
+
+        </div> <!-- column -->
+    </div> <!--Row -->
+        <div class="float-right">
+        <input class="form-control btn btn-primary"
+               type="submit" value="Next">
+        </div>
+</form>
+</div>
+</div> <!--container -->
 </body>
 </html>
