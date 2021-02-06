@@ -15,32 +15,31 @@
 
     <!-- *********** Navigation Bar ********** -->
         <nav class="navbar navbar-expand bg-light">
-            <a class = "navbar-brand text-dark font-italic" href="{{ @BASE }}">4 Paws Only</a>
-            <a class="nav-link text-right" href="#">Log In</a>
+            <a class = "navbar-brand text-black-50 font-italic" href="{{ @BASE }}">4 Paws Only</a>
         </nav>
 
     <!-- *********** Profile Summary ********** -->
         <div class="container">
-            <div class="border">
+            <div class="border rounded mt-4 p-4 pb-5 mb-4">
                 <form method="post" action="">
-                    <div class="row">
+                    <div class="row mb-3">
                         <div class="col-6">
-                            <div class="border">
-                                <p>Pet Name: {{ @SESSION.pname }}</p>
-                                <p>Age: {{ @SESSION.age }}</p>
-                                <p>Seeking: {{ @SESSION.seeking }}</p>
-                                <p>Interests: {{ @SESSION.indoor }}, {{ @SESSION.outdoor}}</p>
+                            <div class="border-top border-left border-right rounded">
+                                <p class="p-2 mb-0 border-bottom">Pet Name: {{ @SESSION.pname }}</p>
+                                <p class="p-2 mb-0 border-bottom">Age: {{ @SESSION.age }}</p>
+                                <p class="p-2 mb-0 border-bottom">Seeking: {{ @SESSION.seeking }}</p>
+                                <p class="p-2 mb-0 border-bottom">Interests: {{ @SESSION.indoor }}, {{ @SESSION.outdoor}}</p>
 
-                                <p>Owner: {{ @SESSION.fname }}</p>
-                                <p>Phone: {{ @SESSION.phone }}</p>
-                                <p>Email: {{ @SESSION.email }}</p>
-                                <p>State: {{ @SESSION.state }}</p>
+                                <p class="p-2 mb-0 border-bottom">Owner: {{ @SESSION.fname }}</p>
+                                <p class="p-2 mb-0 border-bottom">Phone: {{ @SESSION.phone }}</p>
+                                <p class="p-2 mb-0 border-bottom">Email: {{ @SESSION.email }}</p>
+                                <p class="p-2 mb-0 border-bottom rounded">State: {{ @SESSION.state }}</p>
                             </div>
                         </div> <!-- column -->
 
                         <div class="col-6">
-                            <img src="images/pawprint.jpg" class="rounded img-fluid" alt= "Paw print">
-                            <p>Biography</p>
+                            <img src="images/pawprint.jpg" class="mx-auto d-block rounded" width="300" alt= "Paw print">
+                            <p id="bio-title">Biography</p>
                             <p class="text-center">{{ @SESSION.bio }}</p>
                         </div> <!-- column -->
                     </div> <!--row -->
