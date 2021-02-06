@@ -1,5 +1,11 @@
 label{
-    font-weight: bolder;
+    font-weight: 630;
+    margin-top: .5rem;
+    margin-bottom: .25rem;
+}
+nav{
+    font-weight: 500;
+    color: grey;
 }
 ul {
     list-style-type: none;
