@@ -7,6 +7,7 @@
     <!-- CSS (Make sure Bootstrap is first) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/interest-styles.css">
 
     <!-- favicon -->
     <link rel="icon" type="image/jpg" href="images/petLogo.png">
@@ -15,59 +16,97 @@
 
 <!-- *********** Navigation Bar ********** -->
 <nav class="navbar navbar-expand bg-light">
-    <a class = "navbar-brand text-dark font-italic" href="{{ @BASE }}">4 Paws Only</a>
-    <a class="nav-link text-right" href="#">Log In</a>
+    <a class = "navbar-brand text-black-50 font-italic" href="{{ @BASE }}">4 Paws Only</a>
 </nav>
 
 <!-- *********** Profile Information Form ********** -->
 <div class="container">
-    <div class="border">
+    <div class="border rounded mt-4 p-4 pb-5 mb-4">
         <h2>Interests</h2>
         <hr>
-
     <form action="summary" method="post">
         <div class="form-group">
             <label class="control-label">Indoor Interests:</label>
-            <div>
-                <input type="checkbox" id="tv" name="indoor[]" value="tv">
-                <label for="tv">TV</label>
-                <input type="checkbox" id="groom" name="indoor[]" value="groom">
-                <label for="groom">Grooming</label>
-                <input type="checkbox" id="sleep" name="indoor[]" value="sleep">
-                <label for="sleep">Sleeping on the couch</label>
-                <input type="checkbox" id="snuggles" name="indoor[]" value="snuggles">
-                <label for="snuggles">Snuggling with my owner</label>
-                <input type="checkbox" id="treats" name="indoor[]" value="treats">
-                <label for="treats">Treats</label>
-                <input type="checkbox" id="learning" name="indoor[]" value="learning">
-                <label for="learning">Learning new commands</label>
-                <input type="checkbox" id="window" name="indoor[]" value="window">
-                <label for="window">Window watching</label>
-                <input type="checkbox" id="seek" name="indoor[]" value="seek">
-                <label for="seek">Hide and Seek</label>
-                <input type="checkbox" id="sneaky" name="indoor[]" value="sneaky">
-                <label for="sneaky">Stealing my owner's food</label>
+            <div class="font-weight-normal">
+
+                <div class="row ml-2">
+                    <div class="col-3">
+                        <input type="checkbox"  id="tv" name="indoor[]" value="tv">
+                        <label class=" font-weight-normal " for="tv">TV</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="groom" name="indoor[]" value="grooming">
+                        <label class=" font-weight-normal" for="groom">Grooming</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="sleep" name="indoor[]" value="sleeping">
+                        <label class=" font-weight-normal" for="sleep">Sleeping on the couch</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="snuggles" name="indoor[]" value="snuggles">
+                        <label class=" font-weight-normal" for="snuggles">Snuggling with my owner</label>
+                    </div>
+                </div>
+
+                <div class="row ml-2">
+                    <div class="col-3">
+                        <input type="checkbox"  id="treats" name="indoor[]" value="treats">
+                        <label class="font-weight-normal" for="treats">Treats</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="learning" name="indoor[]" value="learning">
+                        <label class="font-weight-normal" for="learning">Learning new commands</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="window" name="indoor[]" value="windows">
+                        <label class="font-weight-normal" for="window">Window watching</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="seek" name="indoor[]" value="hide-n-seek">
+                        <label class="font-weight-normal" for="seek">Hide-n-Seek</label>
+                    </div>
+                </div>
             </div> <!-- row -->
         </div>
 
         <div class="form-group">
             <label class="control-label">Outdoor Interests:</label>
             <div>
-                <input type="checkbox" id="fetch" name="outdoor[]" value="fetch">
-                <label for="fetch">Playing Fetch</label>
-                <input type="checkbox" id="walks" name="outdoor[]" value="walks">
-                <label for="walks">Going on walks</label>
-                <input type="checkbox" id="biking" name="outdoor[]" value="biking">
-                <label for="biking">Biking</label>
-                <input type="checkbox" id="chase" name="outdoor[]" value="chase">
-                <label for="chase">Chasing squirrels/birds</label>
-                <input type="checkbox" id="sun" name="outdoor[]" value="sun">
-                <label for="sun">Sunbathing</label>
-                <input type="checkbox" id="swim" name="outdoor[]" value="swim">
-                <label for="swim">Anything water!</label>
-                <input type="checkbox" id="tugowar" name="outdoor[]" value="tugowar">
-                <label for="tugowar">Tug of War</label>
-            </div>
+
+                <div class="row ml-2">
+                    <div class="col-3">
+                        <input type="checkbox"  id="fetch" name="indoor[]" value="fetch">
+                        <label class=" font-weight-normal " for="fetch">Playing fetch</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="walks" name="indoor[]" value="walks">
+                        <label class=" font-weight-normal" for="walks">Going on walks</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="biking" name="indoor[]" value="biking">
+                        <label class=" font-weight-normal" for="biking">Biking</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="chases" name="indoor[]" value="chases">
+                        <label class=" font-weight-normal" for="chases">Chasing squirrels</label>
+                    </div>
+                </div>
+
+                <div class="row ml-2">
+                    <div class="col-3">
+                        <input type="checkbox"  id="sunbathing" name="indoor[]" value="sunbathing">
+                        <label class="font-weight-normal" for="sunbathing">Sunbathing</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="swimming" name="indoor[]" value="swimming">
+                        <label class="font-weight-normal" for="swimming">Anything water!</label>
+                    </div>
+                    <div class="col-3">
+                        <input type="checkbox"  id="tug-o-war" name="indoor[]" value="tug-o-war">
+                        <label class="font-weight-normal" for="tug-o-war">Tug-o-war</label>
+                    </div>
+                </div>
+            </div> <!-- row -->
         </div>
 
         <div class="float-right">
