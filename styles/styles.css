@@ -26,3 +26,6 @@ h2{
 #noteBorder{
     border-width: 2px !important;
 }
+#bio-title{
+    font-size: larger;
+}
