@@ -16,12 +16,11 @@
 <!-- *********** Navigation Bar ********** -->
 <nav class="navbar navbar-expand bg-light">
     <a class = "navbar-brand text-dark font-italic" href="{{ @BASE }}">4 Paws Only</a>
-    <a class="nav-link text-right" href="#">Log In</a>
 </nav>
 
 <!-- *********** Personal Information Form ********** -->
 <div class="container">
-    <div class="border">
+    <div class="border rounded mt-4 p-4 pb-5">
     <h2>Personal Information</h2>
     <hr>
     <form action = "profile" method="post">
@@ -40,7 +39,7 @@
                 <input type="text" class="form-control" id="phone" name="phone">
 
             </fieldset>
-            <fieldset>
+            <fieldset class="mt-2">
                 <legend>Pet Information</legend>
 
                 <label for="pname">Name</label>
@@ -50,15 +49,15 @@
                 <input type="text" class="form-control" id="age" name="age">
             </fieldset>
 
-            <div class="form-group">
+            <div class="form-group mt-2">
                 <label class="control-label">Gender</label>
                 <div>
-                    <label><input type="radio"
+                    <label class="mr-2 font-weight-normal"><input type="radio"
                                   name="gender"
                                   id="male"
                                   value="male"> Male
                         </input></label>
-                    <label><input type="radio"
+                    <label class="font-weight-normal"><input type="radio"
                                   name="gender"
                                   id="female"
                                   value="female"> Female
@@ -68,9 +67,9 @@
 
         </div> <!-- column -->
         <div class="col-sm-4">
-            <div class="bg-light border">
-                <p><span class="font-weight-bold">Note:</span> All information entered is protected by our <a href = "#">privacy policy</a>.
-                Profile information can only be viewed by others with your permission</p>
+            <div id= "noteBorder" class="bg-light border rounded">
+                <p id="note" class="text-center p-2"><span class="font-weight-bold">Note:</span> All information entered is protected by our <a href = "#">privacy policy</a>.
+                Profile information can only be viewed by others with your permission.</p>
             </div>
 
         </div> <!-- column -->
