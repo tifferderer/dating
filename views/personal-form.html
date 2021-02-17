@@ -31,30 +31,41 @@ Gathers personal information
                 <h2>Personal Information</h2>
                 <hr>
 
-                <form action= "profile" method="post">
+                <form action= "#" method="post">
                     <div class="row">
                         <div class="col-sm-8">
                             <fieldset>
                                 <legend>Owner Information</legend>
-
-                                <label for="fname">First Name</label>
-                                <input type="text" class="form-control" id="fname" name="fname">
-
-                                <label for="lname">Last Name</label>
-                                <input type="text" class="form-control" id="lname" name="lname">
-
-                                <label for="phone">Phone Number</label>
-                                <input type="text" class="form-control" id="phone" name="phone">
+                                <div>
+                                    <label for="fname">First Name</label>
+                                    <input type="text" class="form-control" id="fname" name="fname" value="{{ @userFood }}">
+                                    <check if="{{ isset(@errors['ownerFirst']) }}"> {{ @errors['ownerFirst'] }}</check>
+                                </div>
+                                <div>
+                                    <label for="lname">Last Name</label>
+                                    <input type="text" class="form-control" id="lname" name="lname">
+                                    <check if="{{ isset(@errors['ownerLast']) }}"> {{ @errors['ownerLast'] }}</check>
+                                </div>
+                                <div>
+                                    <label for="phone">Phone Number</label>
+                                    <input type="text" class="form-control" id="phone" name="phone">
+                                    <check if="{{ isset(@errors['phone']) }}"> {{ @errors['phone'] }}</check>
+                                </div>
                             </fieldset>
 
                             <fieldset class="mt-2">
                                 <legend>Pet Information</legend>
 
-                                <label for="pname">Name</label>
-                                <input type="text" class="form-control" id="pname" name="pname">
-
-                                <label for="age">Age</label>
-                                <input type="text" class="form-control" id="age" name="age">
+                                <div>
+                                    <label for="pname">Name</label>
+                                    <input type="text" class="form-control" id="pname" name="pname">
+                                <check if="{{ isset(@errors['pname']) }}"> {{ @errors['pname'] }}</check>
+                                </div>
+                                <div>
+                                    <label for="age">Age</label>
+                                    <input type="text" class="form-control" id="age" name="age">
+                                <check if="{{ isset(@errors['age']) }}"> {{ @errors['age'] }}</check>
+                                </div>
                             </fieldset>
 
                             <div class="form-group mt-2">

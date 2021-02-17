@@ -1,4 +1,7 @@
 <?php
+//Tiffany Ferderer
+//version 2.0
+//index.php
 
 //This is my CONTROLLER
 
@@ -11,6 +14,8 @@ session_start();
 
 //require the autoload file
 require_once('vendor/autoload.php');
+require_once ('model/data-layer.php');
+require_once ('model/validate.php');
 
 //Create an instance of Base class
 $f3 = Base::instance();
@@ -24,14 +29,73 @@ $f3->route('GET /', function() {
 });
 
 //define an personal information route
-$f3->route('GET /register', function () {
+$f3->route('GET|POST /register', function ($f3) {
+
+    //if the form has been submitted
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        //get data from post array
+        $ownerFirst = trim($_POST['fname']);
+        $ownerLast = trim($_POST['lname']);
+        $phone = trim($_POST['phone']);
+        $pname= trim($_POST['pname']);
+        $age = trim($_POST['age']);
+
+        //Validate
+        if(validName($ownerFirst)) {
+            $_SESSION['ownerFirst'] = $ownerFirst;
+        }
+        //data is not valid, set error in f3 hive
+        else {
+            $f3->set('errors["ownerFirst"]',"First name cannot be blank.");
+        }
+        if(validName($ownerLast)) {
+            $_SESSION['ownerLast'] = $ownerLast;
+        }
+        //data is not valid, set error in f3 hive
+        else {
+            $f3->set('errors["ownerLast"]',"Last name cannot be blank.");
+        }
+        if(validPhone($phone)) {
+            $_SESSION['phone'] = $phone;
+        }
+        //data is not valid, set error in f3 hive
+        else {
+            $f3->set('errors["phone"]',"Please type a valid phone number.");
+        }
+        if(validName($pname)) {
+            $_SESSION['pname'] = $pname;
+        }
+        //data is not valid, set error in f3 hive
+        else {
+            $f3->set('errors["pname"]',"Pet name cannot be blank.");
+        }
+        if(validAge($age)) {
+            $_SESSION['age'] = $age;
+        }
+        //data is not valid, set error in f3 hive
+        else {
+            $f3->set('errors["age"]',"Age must be in the range of 18-118.");
+        }
+        //if there are no errors, redirect to order2
+        if(empty($f3->get('errors'))) {
+            $f3->reroute('/profile');  //get
+        }
+    }
+    $f3->set('ownerFirst', isset($ownerFirst) ? $ownerFirst : "");
+    $f3->set('ownerLast', isset($ownerLast) ? $ownerLast : "");
+    $f3->set('phone', isset($phone) ? $phone : "");
+    $f3->set('pname', isset($pname) ? $pname : "");
+    $f3->set('age', isset($age) ? $age : "");
+    $f3->set('gender', isset($gender) ? $gender : "");
+
     $view = new Template();
     echo $view->render('views/personal-form.html');
 });
 
 //define profile form route
-$f3->route('POST /profile', function () {
-    var_dump($_POST);
+$f3->route('GET|POST /profile', function () {
+    //var_dump($_POST);
     if(isset($_POST['fname'])) {
         $_SESSION['fname'] = $_POST['fname'];
     }
@@ -56,7 +120,7 @@ $f3->route('POST /profile', function () {
 
 //define an interests form route
 $f3->route('POST /interests', function () {
-    var_dump($_POST);
+    //var_dump($_POST);
     if(isset($_POST['email'])) {
         $_SESSION['email'] = $_POST['email'];
     }
@@ -75,7 +139,7 @@ $f3->route('POST /interests', function () {
 
 //define profile summary route
 $f3->route('POST /summary', function () {
-    var_dump($_POST);
+    //var_dump($_POST);
     if(isset($_POST['indoor'])) {
         $_SESSION['indoor'] = implode(" ", $_POST['indoor']);
     }
