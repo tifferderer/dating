@@ -35,26 +35,28 @@ $f3->route('GET|POST /register', function ($f3) {
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //get data from post array
-        $ownerFirst = trim($_POST['fname']);
-        $ownerLast = trim($_POST['lname']);
+        $fname = trim($_POST['fname']);
+        $lname = trim($_POST['lname']);
         $phone = trim($_POST['phone']);
         $pname= trim($_POST['pname']);
         $age = trim($_POST['age']);
 
+        // GENDER HAS NOT BEEN SET IN THE SESSION NOR HAS IT BEEN VALIDATED!!!!
+
         //Validate
-        if(validName($ownerFirst)) {
-            $_SESSION['ownerFirst'] = $ownerFirst;
+        if(validName($fname)) {
+            $_SESSION['fname'] = $fname;
         }
         //data is not valid, set error in f3 hive
         else {
-            $f3->set('errors["ownerFirst"]',"First name cannot be blank.");
+            $f3->set('errors["fname"]',"First name cannot be blank.");
         }
-        if(validName($ownerLast)) {
-            $_SESSION['ownerLast'] = $ownerLast;
+        if(validName($lname)) {
+            $_SESSION['lname'] = $lname;
         }
         //data is not valid, set error in f3 hive
         else {
-            $f3->set('errors["ownerLast"]',"Last name cannot be blank.");
+            $f3->set('errors["lname"]',"Last name cannot be blank.");
         }
         if(validPhone($phone)) {
             $_SESSION['phone'] = $phone;
@@ -82,8 +84,8 @@ $f3->route('GET|POST /register', function ($f3) {
             $f3->reroute('/profile');  //get
         }
     }
-    $f3->set('ownerFirst', isset($ownerFirst) ? $ownerFirst : "");
-    $f3->set('ownerLast', isset($ownerLast) ? $ownerLast : "");
+    $f3->set('fname', isset($fname) ? $fname : "");
+    $f3->set('lname', isset($lname) ? $lname : "");
     $f3->set('phone', isset($phone) ? $phone : "");
     $f3->set('pname', isset($pname) ? $pname : "");
     $f3->set('age', isset($age) ? $age : "");

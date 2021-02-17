@@ -38,17 +38,17 @@ Gathers personal information
                                 <legend>Owner Information</legend>
                                 <div>
                                     <label for="fname">First Name</label>
-                                    <input type="text" class="form-control" id="fname" name="fname" value="{{ @userFood }}">
-                                    <check if="{{ isset(@errors['ownerFirst']) }}"> {{ @errors['ownerFirst'] }}</check>
+                                    <input type="text" class="form-control" id="fname" name="fname" value="{{ @fname }}">
+                                    <check if="{{ isset(@errors['fname']) }}"> {{ @errors['fname'] }}</check>
                                 </div>
                                 <div>
                                     <label for="lname">Last Name</label>
-                                    <input type="text" class="form-control" id="lname" name="lname">
-                                    <check if="{{ isset(@errors['ownerLast']) }}"> {{ @errors['ownerLast'] }}</check>
+                                    <input type="text" class="form-control" id="lname" name="lname" value="{{ @lname }}">
+                                    <check if="{{ isset(@errors['lname']) }}"> {{ @errors['lname'] }}</check>
                                 </div>
                                 <div>
                                     <label for="phone">Phone Number</label>
-                                    <input type="text" class="form-control" id="phone" name="phone">
+                                    <input type="text" class="form-control" id="phone" name="phone" value="{{ @phone }}">
                                     <check if="{{ isset(@errors['phone']) }}"> {{ @errors['phone'] }}</check>
                                 </div>
                             </fieldset>
@@ -58,12 +58,12 @@ Gathers personal information
 
                                 <div>
                                     <label for="pname">Name</label>
-                                    <input type="text" class="form-control" id="pname" name="pname">
+                                    <input type="text" class="form-control" id="pname" name="pname" value="{{ @pname }}">
                                 <check if="{{ isset(@errors['pname']) }}"> {{ @errors['pname'] }}</check>
                                 </div>
                                 <div>
                                     <label for="age">Age</label>
-                                    <input type="text" class="form-control" id="age" name="age">
+                                    <input type="text" class="form-control" id="age" name="age" value="{{ @age }}">
                                 <check if="{{ isset(@errors['age']) }}"> {{ @errors['age'] }}</check>
                                 </div>
                             </fieldset>
