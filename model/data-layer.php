@@ -1,30 +1,5 @@
 <?php
-
-/* model/data-layer.php
+/* model/validate.php
 *returns data for my app
  *
 */
-
-function validName() {
-
-}
-
-function validAge() {
-
-}
-
-function validPhone() {
-
-}
-
-function validEmail() {
-
-}
-
-function validOutdoor() {
-
-}
-
-function validIndoor() {
-
-}
