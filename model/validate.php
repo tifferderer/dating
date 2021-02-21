@@ -20,13 +20,19 @@ function validPhone($phone) {
         }
     return false;
     }
-/** validEmail returns true if email contains @ and . */
+/** validEmail returns true if email contains @ and .
+ *  @param $email string
+ * @return bool
+ */
 function validEmail($email) {
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     return (filter_var($email, FILTER_VALIDATE_EMAIL));
 
 }
-/** validOutdoor checks each selected outdoor interest against a list of valid options */
+/** validOutdoor checks each selected outdoor interest against a list of valid options
+ * * @param $selected
+ * @return bool
+ */
 function validOutdoor($selected) {
 
     $validOutside = getOutdoorInterests();
@@ -38,7 +44,10 @@ function validOutdoor($selected) {
     return true;
 }
 
-/** validIndoor checks each selected indoor interest against a list of valid options */
+/** validIndoor checks each selected indoor interest against a list of valid options
+ * * @param $selected
+ * @return bool
+ */
 function validIndoor($selected) {
     $validIndoor = getIndoorInterests();
     foreach ($selected as $indoor) {
@@ -59,6 +68,10 @@ function validGender($selected)
     return (in_array($selected, $validGender));
 }
 
+/** validState returns true if the selected state is in the list of valid options
+ * @param $selected string the selected state
+ * @return bool
+ */
 function validState($selected)
 {
     $validState = getStates();
