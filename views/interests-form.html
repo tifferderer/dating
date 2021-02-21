@@ -35,6 +35,7 @@ Gathers profile interests
                 <form action="#" method="post">
                     <div class="form-group">
                         <label class="control-label">Indoor Interests:</label>
+                        <check if="{{ isset(@errors['indoor']) }}"> {{ @errors['indoor'] }}</check>
 
                         <div class="font-weight-normal">
                             <div class="row ml-2">
@@ -47,7 +48,6 @@ Gathers profile interests
                                                     value="{{ @indoor }}"
                                                 <check if="{{ @indoor == @indoorInterest }}"> checked </check>
                                                 > {{ ucfirst(@indoor) }}</label><br>
-                                        <check if="{{ isset(@errors['indoor']) }}"> {{ @errors['indoor'] }}</check>
                                     </div>
                                 </repeat>
                             </div> <!-- row -->
@@ -56,6 +56,7 @@ Gathers profile interests
 
                     <div class="form-group">
                         <label class="control-label">Outdoor Interests:</label>
+                        <check if="{{ isset(@errors['outdoor']) }}"> {{ @errors['outdoor'] }}</check>
                         <div class="font-weight-normal">
                             <div class="row ml-2">
                                 <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
@@ -67,7 +68,6 @@ Gathers profile interests
                                                     value="{{ @outdoor }}"
                                             <check if="{{ @outdoor == @outdoorInterest }}"> checked </check>
                                             > {{ ucfirst(@outdoor) }}</label><br>
-                                        <check if="{{ isset(@errors['outdoor']) }}"> {{ @errors['outdoor'] }}</check>
                                     </div>
                                 </repeat>
                             </div> <!-- row -->

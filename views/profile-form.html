@@ -35,7 +35,7 @@ Displays form for public profile
                         <div class="col-md-6">
                             <fieldset>
                                 <div>
-                                    <label for="email">Email</label>
+                                    <label for="email">Email*</label>
                                     <input type="text" class="form-control" id="email" name="email" value="{{ @email }}">
                                     <check if="{{ isset(@errors['email']) }}"> {{ @errors['email'] }}</check>
                                 </div>
