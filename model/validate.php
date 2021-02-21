@@ -58,3 +58,9 @@ function validGender($selected)
     $validGender = getGender();
     return (in_array($selected, $validGender));
 }
+
+function validState($selected)
+{
+    $validState = getStates();
+    return (in_array($selected, $validState));
+}

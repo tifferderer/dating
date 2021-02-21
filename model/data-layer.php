@@ -18,3 +18,8 @@ function getGender()
 {
     return array("male", "female");
 }
+
+function getStates()
+{
+    return array("Washington", "California", "Oregon");
+}

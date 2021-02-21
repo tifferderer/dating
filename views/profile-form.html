@@ -30,44 +30,46 @@ Displays form for public profile
             <div class="border rounded mt-4 p-4 pb-5 mb-4">
                 <h2>Profile</h2>
                 <hr>
-                <form action= "interests" method="post">
+                <form action= "#" method="post">
                     <div class=" row">
                         <div class="col-md-6">
                             <fieldset>
-                                <label for="email">Email</label>
-                                <input type="text" class="form-control" id="email" name="email">
-
+                                <div>
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="email" value="{{ @email }}">
+                                    <check if="{{ isset(@errors['email']) }}"> {{ @errors['email'] }}</check>
+                                </div>
                                 <label for="state">State</label>
                                 <select class="custom-select" id="state" name="state">
-                                    <option selected value="WA">WASHINGTON</option>
-                                    <option value="OR">OREGON</option>
-                                    <option value="CA">CALIFORNIA</option>
+                                    <repeat group="{{ @states }}" value="{{ @state }}">
+                                        <option value="{{ @state }}"
+                                        <check if="{{ @state == @userState }}"> selected </check>
+                                        > {{ strtoupper(@state) }}</option>
+                                    </repeat>
                                 </select>
                             </fieldset>
 
-                            <div class="form-group">
+                            <div class="form-group mt-2">
                                 <label class="control-label">Seeking</label>
                                 <div>
-                                    <label class="font-weight-normal mr-2 mt-0">
-                                        <input type="radio"
-                                              name="seeking"
-                                              id="male"
-                                              value="Male"> Male
-                                    </label>
-                                    <label class="font-weight-normal mt-0">
-                                        <input type="radio"
-                                              name="seeking"
-                                              id="female"
-                                              value="Female"> Female
-                                    </label>
+                                    <repeat group="{{ @seekings }}" value="{{ @gender }}">
+                                        <label class="font-weight-normal"><input type="radio"
+                                                                                 name="seeking"
+                                                                                 id="{{ @gender }}"
+                                                                                 value="{{ @gender }}"
+                                            <check if="{{ @gender == @seeking }}"> checked </check>
+                                            > {{ ucfirst(@gender) }}
+                                            </input></label><br>
+                                    </repeat>
+                                    <check if="{{ isset(@errors['seeking']) }}"> {{ @errors['seeking'] }}</check>
                                 </div>
-                            </div>
+                            </div> <!--gender-->
 
                         </div> <!-- column -->
                         <div class="col-sm-6">
                             <fieldset>
                                 <label for="bio">Biography</label>
-                                <textarea class="form-control" id="bio" name="bio" rows="5"></textarea>
+                                <textarea class="form-control" id="bio" name="bio" rows="5"> {{ @bio }} </textarea>
                             </fieldset>
 
                         </div> <!-- column -->

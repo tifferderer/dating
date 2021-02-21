@@ -136,6 +136,17 @@ $f3->route('GET|POST /profile', function ($f3) {
             }
         }
 
+        if (isset($_POST['state'])) {
+
+            $userState = $_POST['state'];
+
+            if (validState($userState)) {
+                $_SESSION['userState'] = $userState;
+            } else {
+                $f3->set('errors["state"]', "Please select a valid state.");
+            }
+        }
+
         if (isset($_POST['bio'])) {
 
             $bio = trim($_POST['bio']);
@@ -152,9 +163,11 @@ $f3->route('GET|POST /profile', function ($f3) {
     }
 
     $f3->set('seekings', getGender());
+    $f3->set('states', getStates());
 
     $f3->set('email', isset($email) ? $email : "");
     $f3->set('seeking', isset($seeking) ? $seeking : "");
+    $f3->set('userState', isset($userState) ? $userState : "");
     $f3->set('bio', isset($bio) ? $bio : "");
 
     $view = new Template();
