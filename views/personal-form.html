@@ -71,18 +71,16 @@ Gathers personal information
                             <div class="form-group mt-2">
                                 <label class="control-label">Gender</label>
                                 <div>
-                                    <label class="mr-2 font-weight-normal">
-                                        <input type="radio"
-                                                  name="gender"
-                                                  id="male"
-                                                  value="male"> Male
-                                        </label>
-                                    <label class="font-weight-normal">
-                                        <input type="radio"
-                                                  name="gender"
-                                                  id="female"
-                                                  value="female"> Female
-                                        </label>
+                                    <repeat group="{{ @genders }}" value="{{ @gender }}">
+                                        <label class="font-weight-normal"><input type="radio"
+                                                      name="gender"
+                                                      id="{{ @gender }}"
+                                                      value="{{ @gender }}"
+                                            <check if="{{ @gender == @userGender }}"> checked </check>
+                                            > {{ ucfirst(@gender) }}
+                                            </input></label><br>
+                                    </repeat>
+                                    <check if="{{ isset(@errors['gender']) }}"> {{ @errors['gender'] }}</check>
                                 </div>
                             </div> <!--gender-->
                         </div> <!-- column -->

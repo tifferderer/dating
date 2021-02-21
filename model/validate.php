@@ -48,3 +48,13 @@ function validIndoor($selected) {
     }
     return true;
 }
+
+/** validGender returns true if the selected gender is in the list of valid options
+ * @param $selected string
+ * @return bool
+ */
+function validGender($selected)
+{
+    $validGender = getGender();
+    return (in_array($selected, $validGender));
+}

@@ -79,17 +79,32 @@ $f3->route('GET|POST /register', function ($f3) {
         else {
             $f3->set('errors["age"]',"Age must be in the range of 18-118.");
         }
+
+        if(isset($_POST['gender'])) {
+
+            $userGender = $_POST['gender'];
+
+            if(validGender($userGender)) {
+                $_SESSION['userGender'] = $userGender;
+            }
+            else{
+                $f3->set('errors["gender"]', "Please select a gender.");
+            }
+        }
+
         //if there are no errors, redirect to order2
         if(empty($f3->get('errors'))) {
             $f3->reroute('/profile');  //get
         }
     }
+
+    $f3->set('genders', getGender());
     $f3->set('fname', isset($fname) ? $fname : "");
     $f3->set('lname', isset($lname) ? $lname : "");
     $f3->set('phone', isset($phone) ? $phone : "");
     $f3->set('pname', isset($pname) ? $pname : "");
     $f3->set('age', isset($age) ? $age : "");
-    $f3->set('gender', isset($gender) ? $gender : "");
+    $f3->set('userGender', isset($userGender) ? $userGender : "");
 
     $view = new Template();
     echo $view->render('views/personal-form.html');

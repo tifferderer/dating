@@ -13,3 +13,8 @@ function getOutdoorInterests() {
     return array("fetch", "biking", "chases", "walks",
         "sunbathing", "swimming", "tug-o-war");
 }
+
+function getGender()
+{
+    return array("male", "female");
+}
