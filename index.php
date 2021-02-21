@@ -68,7 +68,7 @@ $f3->route('GET|POST /register', function ($f3) {
         }
         //data is not valid, set error in f3 hive
         else {
-            $f3->set('errors["pname"]',"Pet name cannot be blank.");
+            $f3->set('errors["pname"]',"Required. Please no spaces");
         }
         if(validAge($age)) {
             $_SESSION['age'] = $age;
@@ -98,6 +98,8 @@ $f3->route('GET|POST /register', function ($f3) {
 
     $f3->set('genders', getGender());
 
+    $f3->set('fname', isset($fname) ? $fname : "");
+    $f3->set('lname', isset($lname) ? $lname : "");
     $f3->set('phone', isset($phone) ? $phone : "");
     $f3->set('pname', isset($pname) ? $pname : "");
     $f3->set('age', isset($age) ? $age : "");
@@ -109,8 +111,6 @@ $f3->route('GET|POST /register', function ($f3) {
 
 //define profile form route
 $f3->route('GET|POST /profile', function ($f3) {
-
-    //STATE IS NOT VALIDATED NOR STICKY *****************
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -194,7 +194,7 @@ $f3->route('GET|POST /interests', function ($f3) {
             $userOutdoor = $_POST['outdoor'];
             $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
 
-            if (validIndoor($userOutdoor)) {
+            if (validOutdoor($userOutdoor)) {
                 $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
             } else {
                 $f3->set('errors["outdoor"]', "Valid interests only.");
@@ -220,6 +220,8 @@ $f3->route('GET /summary', function () {
 
     $view = new Template();
     echo $view->render('views/summary.html');
+
+    session_destroy();
 });
 
 //run fat free
