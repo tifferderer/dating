@@ -32,89 +32,46 @@ Gathers profile interests
                 <h2>Interests</h2>
                 <hr>
 
-                <form action="summary" method="post">
+                <form action="#" method="post">
                     <div class="form-group">
                         <label class="control-label">Indoor Interests:</label>
 
                         <div class="font-weight-normal">
                             <div class="row ml-2">
-                                <div class="col-3">
-                                    <input type="checkbox"  id="tv" name="indoor[]" value="tv">
-                                    <label class=" font-weight-normal " for="tv">TV</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="groom" name="indoor[]" value="grooming">
-                                    <label class=" font-weight-normal" for="groom">Grooming</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="sleep" name="indoor[]" value="sleeping">
-                                    <label class=" font-weight-normal" for="sleep">Sleeping on the couch</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="snuggles" name="indoor[]" value="snuggles">
-                                    <label class=" font-weight-normal" for="snuggles">Snuggling with my owner</label>
-                                </div>
-                            </div>
-
-                            <div class="row ml-2">
-                                <div class="col-3">
-                                    <input type="checkbox"  id="treats" name="indoor[]" value="treats">
-                                    <label class="font-weight-normal" for="treats">Treats</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="learning" name="indoor[]" value="learning">
-                                    <label class="font-weight-normal" for="learning">Learning new commands</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="window" name="indoor[]" value="windows">
-                                    <label class="font-weight-normal" for="window">Window watching</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="seek" name="indoor[]" value="hide-n-seek">
-                                    <label class="font-weight-normal" for="seek">Hide-n-Seek</label>
-                                </div>
-                            </div>
-                        </div> <!-- row -->
-                    </div>
+                                <repeat group="{{ @indoors }}" value="{{ @indoor }}">
+                                    <div class="col-3">
+                                            <label class="font-weight-normal">
+                                                <input
+                                                    type="checkbox"
+                                                    name="indoor[]"
+                                                    value="{{ @indoor }}"
+                                                <check if="{{ @indoor == @indoorInterest }}"> checked </check>
+                                                > {{ ucfirst(@indoor) }}</label><br>
+                                        <check if="{{ isset(@errors['indoor']) }}"> {{ @errors['indoor'] }}</check>
+                                    </div>
+                                </repeat>
+                            </div> <!-- row -->
+                         </div>
+                     </div>
 
                     <div class="form-group">
                         <label class="control-label">Outdoor Interests:</label>
-                        <div>
-
+                        <div class="font-weight-normal">
                             <div class="row ml-2">
-                                <div class="col-3">
-                                    <input type="checkbox"  id="fetch" name="outdoor[]" value="fetch">
-                                    <label class=" font-weight-normal " for="fetch">Playing fetch</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="walks" name="outdoor[]" value="walks">
-                                    <label class=" font-weight-normal" for="walks">Going on walks</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="biking" name="outdoor[]" value="biking">
-                                    <label class=" font-weight-normal" for="biking">Biking</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="chases" name="outdoor[]" value="chases">
-                                    <label class=" font-weight-normal" for="chases">Chasing squirrels</label>
-                                </div>
-                            </div>
-
-                            <div class="row ml-2">
-                                <div class="col-3">
-                                    <input type="checkbox"  id="sunbathing" name="outdoor[]" value="sunbathing">
-                                    <label class="font-weight-normal" for="sunbathing">Sunbathing</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="swimming" name="outdoor[]" value="swimming">
-                                    <label class="font-weight-normal" for="swimming">Anything water!</label>
-                                </div>
-                                <div class="col-3">
-                                    <input type="checkbox"  id="tug-o-war" name="outdoor[]" value="tug-o-war">
-                                    <label class="font-weight-normal" for="tug-o-war">Tug-o-war</label>
-                                </div>
-                            </div>
-                        </div> <!-- row -->
+                                <repeat group="{{ @outdoors }}" value="{{ @outdoor }}">
+                                    <div class="col-3">
+                                        <label class="font-weight-normal">
+                                            <input
+                                                    type="checkbox"
+                                                    name="outdoor[]"
+                                                    value="{{ @outdoor }}"
+                                            <check if="{{ @outdoor == @outdoorInterest }}"> checked </check>
+                                            > {{ ucfirst(@outdoor) }}</label><br>
+                                        <check if="{{ isset(@errors['outdoor']) }}"> {{ @errors['outdoor'] }}</check>
+                                    </div>
+                                </repeat>
+                            </div> <!-- row -->
+                        </div>
                     </div>
 
                     <div class="float-right">

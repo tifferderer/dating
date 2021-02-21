@@ -97,8 +97,7 @@ $f3->route('GET|POST /register', function ($f3) {
     }
 
     $f3->set('genders', getGender());
-    $f3->set('fname', isset($fname) ? $fname : "");
-    $f3->set('lname', isset($lname) ? $lname : "");
+
     $f3->set('phone', isset($phone) ? $phone : "");
     $f3->set('pname', isset($pname) ? $pname : "");
     $f3->set('age', isset($age) ? $age : "");
@@ -175,14 +174,49 @@ $f3->route('GET|POST /profile', function ($f3) {
 });
 
 //define an interests form route
-$f3->route('GET|POST /interests', function () {
+$f3->route('GET|POST /interests', function ($f3) {
+
+    if($_SERVER['REQUEST_METHOD']=='POST') {
+        //if condiments selected
+        if (isset($_POST['indoor'])) {
+            //get from post array
+            $userIndoor = $_POST['indoor'];
+            $_SESSION['indoorInterest'] = implode(" ", $userIndoor);
+
+            if (validIndoor($userIndoor)) {
+                $_SESSION['indoorInterest'] = implode(" ", $userIndoor);
+            } else {
+                $f3->set('errors["indoor"]', "Valid interests only.");
+            }
+        }
+        if (isset($_POST['outdoor'])) {
+            //get from post array
+            $userOutdoor = $_POST['outdoor'];
+            $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
+
+            if (validIndoor($userOutdoor)) {
+                $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
+            } else {
+                $f3->set('errors["outdoor"]', "Valid interests only.");
+            }
+        }
+        if (empty($f3->get('errors'))) {
+            //send to the summary page
+            $f3->reroute('/summary');
+        }
+    }
+    $f3->set('indoors', getIndoorInterests());
+    $f3->set('outdoors', getOutdoorInterests());
+
+    $f3->set('indoorInterest', isset($indoorInterest) ? $indoorInterest : "");
+    $f3->set('outdoorInterest', isset($outdoorInterest) ? $outdoorInterest : "");
 
     $view = new Template();
     echo $view->render('views/interests-form.html');
 });
 
 //define profile summary route
-$f3->route('POST /summary', function () {
+$f3->route('GET /summary', function () {
 
     $view = new Template();
     echo $view->render('views/summary.html');
