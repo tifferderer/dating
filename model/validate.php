@@ -1,13 +1,19 @@
 <?php
 
 //contains validation functions
-/** validName() returns true if Name is not empty */
+/** validName() returns true if Name is not empty
+ * * @param $name string name
+ * @return bool valid name
+ */
 function validName($name) {
     return !empty($name && ctype_alpha($name));
 }
-/**validAge returns true if age is between 18 and 118 */
+/**validAge returns true if age is between 18 and 118
+* @param $age numeric age
+ * @return bool valid age
+ */
 function validAge($age) {
-    return($age >= 17 && $age <= 118);
+    return($age > 17 && $age <= 118);
 }
 
 /** validPhone returns true if phone is only numbers and is 9 characters long
