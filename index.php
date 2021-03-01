@@ -9,16 +9,17 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+//require the autoload file
+require_once('vendor/autoload.php');
+
 //Start a session
 session_start();
 
-//require the autoload file
-require_once('vendor/autoload.php');
-require_once ('model/data-layer.php');
-require_once ('model/validate.php');
-
 //Create an instance of Base class
 $f3 = Base::instance();
+$validator = new Validate();
+
+
 $f3->set('DEBUG', 3);
 
 //define a default route(home page)
@@ -31,6 +32,8 @@ $f3->route('GET /', function() {
 //define an personal information route
 $f3->route('GET|POST /register', function ($f3) {
 
+    global $validator;
+
     //if the form has been submitted
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -42,35 +45,35 @@ $f3->route('GET|POST /register', function ($f3) {
         $age = trim($_POST['age']);
 
         //Validate
-        if(validName($fname)) {
+        if($validator->validName($fname)) {
             $_SESSION['fname'] = $fname;
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["fname"]',"First name cannot be blank.");
         }
-        if(validName($lname)) {
+        if($validator->validName($lname)) {
             $_SESSION['lname'] = $lname;
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["lname"]',"Last name cannot be blank.");
         }
-        if(validPhone($phone)) {
+        if($validator->validPhone($phone)) {
             $_SESSION['phone'] = $phone;
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["phone"]',"Please type a valid phone number.");
         }
-        if(validName($pname)) {
+        if($validator->validName($pname)) {
             $_SESSION['pname'] = $pname;
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["pname"]',"Required. Please no spaces");
         }
-        if(validAge($age)) {
+        if($validator->validAge($age)) {
             $_SESSION['age'] = $age;
         }
         //data is not valid, set error in f3 hive
@@ -82,7 +85,7 @@ $f3->route('GET|POST /register', function ($f3) {
 
             $userGender = $_POST['gender'];
 
-            if(validGender($userGender)) {
+            if($validator->validGender($userGender)) {
                 $_SESSION['userGender'] = $userGender;
             }
             else{
@@ -112,12 +115,14 @@ $f3->route('GET|POST /register', function ($f3) {
 //define profile form route
 $f3->route('GET|POST /profile', function ($f3) {
 
+    global $validator;
+
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         //get required data
         $email = trim($_POST['email']);
 
-        if (validEmail($email)) {
+        if ($validator->validEmail($email)) {
             $_SESSION['email'] = $email;
         } else {
             $f3->set('errors["email"]', "Email required.");
@@ -128,7 +133,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
             $seeking = $_POST['seeking'];
 
-            if (validGender($seeking)) {
+            if ($validator->validGender($seeking)) {
                 $_SESSION['seeking'] = $seeking;
             } else {
                 $f3->set('errors["seeking"]', "Please select a gender.");
@@ -139,7 +144,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
             $userState = $_POST['state'];
 
-            if (validState($userState)) {
+            if ($validator->validState($userState)) {
                 $_SESSION['userState'] = $userState;
             } else {
                 $f3->set('errors["state"]', "Please select a valid state.");
@@ -175,6 +180,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
 //define an interests form route
 $f3->route('GET|POST /interests', function ($f3) {
+    global $validator;
 
     if($_SERVER['REQUEST_METHOD']=='POST') {
         //if condiments selected
@@ -183,7 +189,7 @@ $f3->route('GET|POST /interests', function ($f3) {
             $userIndoor = $_POST['indoor'];
             $_SESSION['indoorInterest'] = implode(" ", $userIndoor);
 
-            if (validIndoor($userIndoor)) {
+            if ($validator->validIndoor($userIndoor)) {
                 $_SESSION['indoorInterest'] = implode(" ", $userIndoor);
             } else {
                 $f3->set('errors["indoor"]', "Valid interests only.");
@@ -194,7 +200,7 @@ $f3->route('GET|POST /interests', function ($f3) {
             $userOutdoor = $_POST['outdoor'];
             $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
 
-            if (validOutdoor($userOutdoor)) {
+            if ($validator->validOutdoor($userOutdoor)) {
                 $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
             } else {
                 $f3->set('errors["outdoor"]', "Valid interests only.");
