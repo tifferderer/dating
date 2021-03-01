@@ -3,11 +3,6 @@
 //contains validation functions
 class Validate
 {
-    private  $_dataLayer;
-    function __construct()
-    {
-        $this->_dataLayer = $dataLayer;
-    };
 
     /** validName() returns true if Name is not empty
      * * @param $name string name
