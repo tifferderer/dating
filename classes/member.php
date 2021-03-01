@@ -12,14 +12,22 @@ class Member
     private $_seeking;
     private $_bio;
 
-    function __construct($fname, $lname, $age, $gender, $phone)
-    {
-        $this->_fname = $fname;
-        $this->_lname = $lname;
-        $this->_age = $age;
-        $this->_gender = $gender;
-        $this->_phone = $phone;
-    }
+    private $_pname;
+
+    /**
+     * get pet name
+     * @return string
+     */
+
+
+//    function __construct($fname, $lname, $age, $gender, $phone)
+//    {
+//        $this->_fname = $fname;
+//        $this->_lname = $lname;
+//        $this->_age = $age;
+//        $this->_gender = $gender;
+//        $this->_phone = $phone;
+//    }
 
     /**
      * Getter for Last name
@@ -183,5 +191,18 @@ class Member
         $this->_bio = $bio;
     }
 
+    public function getPname()
+    {
+        return $this->_pname;
+    }
+
+    /**
+     * set pet name
+     * @param string $pname
+     */
+    public function setPname($pname)
+    {
+        $this->_pname = $pname;
+    }
 
 }

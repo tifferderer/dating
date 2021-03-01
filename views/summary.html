@@ -31,22 +31,22 @@ Dating 2
                     <div class="row mb-3">
                         <div class="col-6">
                             <div class="border-top border-left border-right rounded">
-                                <p class="p-2 mb-0 border-bottom">Pet Name: {{ @SESSION.pname }}</p>
-                                <p class="p-2 mb-0 border-bottom">Age: {{ @SESSION.age }}</p>
-                                <p class="p-2 mb-0 border-bottom">Seeking: {{ @SESSION.seeking }}</p>
+                                <p class="p-2 mb-0 border-bottom">Pet Name: {{ @SESSION.member->getPname() }}</p>
+                                <p class="p-2 mb-0 border-bottom">Age: {{ @SESSION.member->getAge() }}</p>
+                                <p class="p-2 mb-0 border-bottom">Seeking: {{ @SESSION.member->getSeeking() }}</p>
                                 <p class="p-2 mb-0 border-bottom">Interests: {{ @SESSION.indoorInterest }} {{ @SESSION.outdoorInterest}}</p>
 
-                                <p class="p-2 mb-0 border-bottom">Owner: {{ @SESSION.fname }}</p>
-                                <p class="p-2 mb-0 border-bottom">Phone: {{ @SESSION.phone }}</p>
-                                <p class="p-2 mb-0 border-bottom">Email: {{ @SESSION.email }}</p>
-                                <p class="p-2 mb-0 border-bottom rounded">State: {{ @SESSION.userState }}</p>
+                                <p class="p-2 mb-0 border-bottom">Owner: {{ @SESSION.member->getFname() }}</p>
+                                <p class="p-2 mb-0 border-bottom">Phone: {{ @SESSION.member->getPhone() }}</p>
+                                <p class="p-2 mb-0 border-bottom">Email: {{ @SESSION.member->getEmail() }}</p>
+                                <p class="p-2 mb-0 border-bottom rounded">State: {{ @SESSION.member->getState() }}</p>
                             </div>
                         </div> <!-- column -->
 
                         <div class="col-6">
                             <img src="images/pawprint.jpg" class="mx-auto d-block rounded" width="300" alt= "Paw print">
                             <p id="bio-title">Biography</p>
-                            <p class="text-center">{{ @SESSION.bio }}</p>
+                            <p class="text-center">{{ @SESSION.member->getBio() }}</p>
                         </div> <!-- column -->
                     </div> <!--row -->
 
