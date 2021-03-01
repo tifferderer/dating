@@ -17,8 +17,9 @@ session_start();
 
 //Create an instance of Base class
 $f3 = Base::instance();
-$validator = new Validate();
-$dataLayer = new DataLayer();
+$validator = new PValidate();
+$dataLayer = new PDataLayer();
+$member = new Member();
 
 
 $f3->set('DEBUG', 3);
@@ -35,6 +36,7 @@ $f3->route('GET|POST /register', function ($f3) {
 
     global $validator;
     global $dataLayer;
+    global $member;
 
     //if the form has been submitted
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -45,38 +47,39 @@ $f3->route('GET|POST /register', function ($f3) {
         $phone = trim($_POST['phone']);
         $pname= trim($_POST['pname']);
         $age = trim($_POST['age']);
+        $premium = ($_POST['premium']);
 
         //Validate
         if($validator->validName($fname)) {
-            $_SESSION['fname'] = $fname;
+            $member->setFname($fname);
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["fname"]',"First name cannot be blank.");
         }
         if($validator->validName($lname)) {
-            $_SESSION['lname'] = $lname;
+            $member->setLname($lname);
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["lname"]',"Last name cannot be blank.");
         }
         if($validator->validPhone($phone)) {
-            $_SESSION['phone'] = $phone;
+            $member->setPhone($phone);
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["phone"]',"Please type a valid phone number.");
         }
         if($validator->validName($pname)) {
-            $_SESSION['pname'] = $pname;
+            $member->setPname($pname);
         }
         //data is not valid, set error in f3 hive
         else {
             $f3->set('errors["pname"]',"Required. Please no spaces");
         }
         if($validator->validAge($age)) {
-            $_SESSION['age'] = $age;
+            $member->setAge($age);
         }
         //data is not valid, set error in f3 hive
         else {
@@ -88,7 +91,7 @@ $f3->route('GET|POST /register', function ($f3) {
             $userGender = $_POST['gender'];
 
             if($validator->validGender($userGender)) {
-                $_SESSION['userGender'] = $userGender;
+                $member->setGender($userGender);
             }
             else{
                 $f3->set('errors["gender"]', "Please select a gender.");
@@ -97,6 +100,7 @@ $f3->route('GET|POST /register', function ($f3) {
 
         //if there are no errors, redirect
         if(empty($f3->get('errors'))) {
+            $_SESSION['member'] = $member;
             $f3->reroute('/profile');  //get
         }
     }
@@ -119,6 +123,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 
     global $validator;
     global $dataLayer;
+    global $member;
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -126,7 +131,8 @@ $f3->route('GET|POST /profile', function ($f3) {
         $email = trim($_POST['email']);
 
         if ($validator->validEmail($email)) {
-            $_SESSION['email'] = $email;
+            $member->setEmail($email);
+            $_SESSION['member']->setEmail($email);
         } else {
             $f3->set('errors["email"]', "Email required.");
         }
@@ -137,7 +143,8 @@ $f3->route('GET|POST /profile', function ($f3) {
             $seeking = $_POST['seeking'];
 
             if ($validator->validGender($seeking)) {
-                $_SESSION['seeking'] = $seeking;
+                $member->setSeeking($seeking);
+                $_SESSION['member']->setSeeking($seeking);
             } else {
                 $f3->set('errors["seeking"]', "Please select a gender.");
             }
@@ -148,7 +155,8 @@ $f3->route('GET|POST /profile', function ($f3) {
             $userState = $_POST['state'];
 
             if ($validator->validState($userState)) {
-                $_SESSION['userState'] = $userState;
+                $member->setState($userState);
+                $_SESSION['member']->setState($userState);
             } else {
                 $f3->set('errors["state"]', "Please select a valid state.");
             }
@@ -159,7 +167,8 @@ $f3->route('GET|POST /profile', function ($f3) {
             $bio = trim($_POST['bio']);
 
             if (!empty($bio)) {
-                $_SESSION['bio'] = $bio;
+                $member->setBio($bio);
+                $_SESSION['member']->setBio($bio);
             }
         }
 

@@ -1,13 +1,13 @@
 <?php
 
 //contains validation functions
-class Validate
+class PValidate
 {
     private $_dataLayer;
 
     function __construct()
     {
-        $this->_dataLayer = new DataLayer();
+        $this->_dataLayer = new PDataLayer();
     }
 
     /** validName() returns true if Name is not empty
@@ -58,7 +58,7 @@ class Validate
     function validOutdoor($selected)
     {
 
-        $validOutside = getOutdoorInterests();
+        $validOutside = $this->_dataLayer->getOutdoorInterests();
         foreach ($selected as $outdoor) {
             if (!(in_array($outdoor, $validOutside))) {
                 return false;
@@ -73,7 +73,7 @@ class Validate
      */
     function validIndoor($selected)
     {
-        $validIndoor = getIndoorInterests();
+        $validIndoor = $this->_dataLayer->getIndoorInterests();
         foreach ($selected as $indoor) {
             if (!(in_array($indoor, $validIndoor))) {
                 return false;
@@ -88,7 +88,7 @@ class Validate
      */
     function validGender($selected)
     {
-        $validGender = getGender();
+        $validGender = $this->_dataLayer->getGender();
         return (in_array($selected, $validGender));
     }
 
@@ -98,7 +98,7 @@ class Validate
      */
     function validState($selected)
     {
-        $validState = getStates();
+        $validState = $this->_dataLayer->getStates();
         return (in_array($selected, $validState));
     }
 }
