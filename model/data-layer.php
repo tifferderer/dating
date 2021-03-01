@@ -4,22 +4,27 @@
  *
 */
 
-function getIndoorInterests() {
-    return array("tv", "grooming", "sleeping", "snuggles",
-        "treats", "training", "window watching", "hide-n-seek");
-}
-
-function getOutdoorInterests() {
-    return array("fetch", "biking", "chases", "walks",
-        "sunbathing", "swimming", "tug-o-war");
-}
-
-function getGender()
+class DataLayer
 {
-    return array("male", "female");
-}
+    function getIndoorInterests()
+    {
+        return array("tv", "grooming", "sleeping", "snuggles",
+            "treats", "training", "window watching", "hide-n-seek");
+    }
 
-function getStates()
-{
-    return array("Washington", "California", "Oregon");
+    function getOutdoorInterests()
+    {
+        return array("fetch", "biking", "chases", "walks",
+            "sunbathing", "swimming", "tug-o-war");
+    }
+
+    function getGender()
+    {
+        return array("male", "female");
+    }
+
+    function getStates()
+    {
+        return array("Washington", "California", "Oregon");
+    }
 }

@@ -18,6 +18,7 @@ session_start();
 //Create an instance of Base class
 $f3 = Base::instance();
 $validator = new Validate();
+$dataLayer = new DataLayer();
 
 
 $f3->set('DEBUG', 3);
@@ -33,6 +34,7 @@ $f3->route('GET /', function() {
 $f3->route('GET|POST /register', function ($f3) {
 
     global $validator;
+    global $dataLayer;
 
     //if the form has been submitted
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -99,7 +101,7 @@ $f3->route('GET|POST /register', function ($f3) {
         }
     }
 
-    $f3->set('genders', getGender());
+    $f3->set('genders', $dataLayer->getGender());
 
     $f3->set('fname', isset($fname) ? $fname : "");
     $f3->set('lname', isset($lname) ? $lname : "");
@@ -116,6 +118,7 @@ $f3->route('GET|POST /register', function ($f3) {
 $f3->route('GET|POST /profile', function ($f3) {
 
     global $validator;
+    global $dataLayer;
 
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -166,8 +169,8 @@ $f3->route('GET|POST /profile', function ($f3) {
         }
     }
 
-    $f3->set('seekings', getGender());
-    $f3->set('states', getStates());
+    $f3->set('seekings', $dataLayer->getGender());
+    $f3->set('states', $dataLayer->getStates());
 
     $f3->set('email', isset($email) ? $email : "");
     $f3->set('seeking', isset($seeking) ? $seeking : "");
@@ -181,6 +184,7 @@ $f3->route('GET|POST /profile', function ($f3) {
 //define an interests form route
 $f3->route('GET|POST /interests', function ($f3) {
     global $validator;
+    global $dataLayer;
 
     if($_SERVER['REQUEST_METHOD']=='POST') {
         //if condiments selected
@@ -211,8 +215,8 @@ $f3->route('GET|POST /interests', function ($f3) {
             $f3->reroute('/summary');
         }
     }
-    $f3->set('indoors', getIndoorInterests());
-    $f3->set('outdoors', getOutdoorInterests());
+    $f3->set('indoors', $dataLayer->getIndoorInterests());
+    $f3->set('outdoors', $dataLayer->getOutdoorInterests());
 
     $f3->set('indoorInterest', isset($indoorInterest) ? $indoorInterest : "");
     $f3->set('outdoorInterest', isset($outdoorInterest) ? $outdoorInterest : "");
