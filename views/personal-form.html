@@ -51,6 +51,11 @@ Gathers personal information
                                     <input type="text" class="form-control" id="phone" name="phone" value="{{ @phone }}">
                                     <check if="{{ isset(@errors['phone']) }}"> {{ @errors['phone'] }}</check>
                                 </div>
+                                <div>
+                                    <h6 class="m-0 mt-3">Premium Membership</h6>
+                                    <input type="checkbox" id="premium" name="premium" value="premium">
+                                    <label for="premium" class="font-weight-normal">Sign me up for a Premium Account</label><br>
+                                </div>
                             </fieldset>
 
                             <fieldset class="mt-2">
@@ -87,7 +92,8 @@ Gathers personal information
 
                         <div class="col-sm-4">
                             <div id= "noteBorder" class="bg-light border rounded">
-                                <p id="note" class="text-center p-2"><span class="font-weight-bold">Note:</span> All information entered is protected by our <a href = "#">privacy policy</a>.
+                                <p id="note" class="text-center p-2"><span class="font-weight-bold">Note:</span>
+                                    All information entered is protected by our <a href = "#">privacy policy</a>.
                                 Profile information can only be viewed by others with your permission.</p>
                             </div> <!--border-->
                         </div> <!-- column -->
