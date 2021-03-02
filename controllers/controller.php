@@ -71,10 +71,10 @@ class PController
 
                 //premium checkbox validation
                 if(isset($_POST['premium'])) {
-                    $member = new Premium($fname, $lname, $age, $userGender, $phone);
+                    $member = new Premium($fname, $lname, $age, $userGender, $phone, $pname);
                 }
                 else{
-                    $member = new Member($fname, $lname, $age, $userGender, $phone);
+                    $member = new Member($fname, $lname, $age, $userGender, $phone, $pname);
                 }
                 $_SESSION['member'] = $member;
                 $this->_f3->reroute('/profile');  //get

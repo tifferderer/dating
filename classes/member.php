@@ -20,13 +20,14 @@ class Member
      */
 
 
-    function __construct($fname="unknown", $lname="unknown", $age="unknown", $gender="unknown", $phone="unknown")
+    function __construct($fname="unknown", $lname="unknown", $age="unknown", $gender="unknown", $phone="unknown", $pname="unknown")
     {
         $this->_fname = $fname;
         $this->_lname = $lname;
         $this->_age = $age;
         $this->_gender = $gender;
         $this->_phone = $phone;
+        $this->_pname = $pname;
     }
 
     /**
