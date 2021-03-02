@@ -23,13 +23,12 @@ class PController
 
     function register()
     {
+
         global $validator;
         global $dataLayer;
-        global $member;
 
         //if the form has been submitted
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             //get data from post array
             $fname = trim($_POST['fname']);
             $lname = trim($_POST['lname']);
@@ -37,44 +36,20 @@ class PController
             $pname= trim($_POST['pname']);
             $age = trim($_POST['age']);
 
-            //premium checkbox validation
-            if(isset($_POST['premium'])) {
-                $member = new Premium();
-            }
             //Validate
-            if($validator->validName($fname)) {
-                $member->setFname($fname);
-            }
-            //data is not valid, set error in f3 hive
-            else {
+            if(!$validator->validName($fname)) {
                 $this->_f3->set('errors["fname"]',"First name cannot be blank.");
             }
-            if($validator->validName($lname)) {
-                $member->setLname($lname);
-            }
-            //data is not valid, set error in f3 hive
-            else {
+            if(!$validator->validName($lname)) {
                 $this->_f3->set('errors["lname"]',"Last name cannot be blank.");
             }
-            if($validator->validPhone($phone)) {
-                $member->setPhone($phone);
-            }
-            //data is not valid, set error in f3 hive
-            else {
+            if(!$validator->validPhone($phone)) {
                 $this->_f3->set('errors["phone"]',"Please type a valid phone number.");
             }
-            if($validator->validName($pname)) {
-                $member->setPname($pname);
-            }
-            //data is not valid, set error in f3 hive
-            else {
+            if(!$validator->validName($pname)) {
                 $this->_f3->set('errors["pname"]',"Required. Please no spaces");
             }
-            if($validator->validAge($age)) {
-                $member->setAge($age);
-            }
-            //data is not valid, set error in f3 hive
-            else {
+            if(!$validator->validAge($age)) {
                 $this->_f3->set('errors["age"]',"Age must be in the range of 18-118.");
             }
 
@@ -82,16 +57,25 @@ class PController
 
                 $userGender = $_POST['gender'];
 
-                if($validator->validGender($userGender)) {
-                    $member->setGender($userGender);
-                }
-                else{
+                if(!$validator->validGender($userGender)) {
                     $this->_f3->set('errors["gender"]', "Please select a gender.");
                 }
             }
 
+            if(isset($_POST['premium'])) {
+                $premium = $_POST['premium'];
+            }
+
             //if there are no errors, redirect
             if(empty($this->_f3->get('errors'))) {
+
+                //premium checkbox validation
+                if(isset($_POST['premium'])) {
+                    $member = new Premium($fname, $lname, $age, $userGender, $phone);
+                }
+                else{
+                    $member = new Member($fname, $lname, $age, $userGender, $phone);
+                }
                 $_SESSION['member'] = $member;
                 $this->_f3->reroute('/profile');  //get
             }
@@ -105,6 +89,7 @@ class PController
         $this->_f3->set('pname', isset($pname) ? $pname : "");
         $this->_f3->set('age', isset($age) ? $age : "");
         $this->_f3->set('userGender', isset($userGender) ? $userGender : "");
+        $this->_f3->set('premium', isset($premium));
 
         $view = new Template();
         echo $view->render('views/personal-form.html');
@@ -112,10 +97,9 @@ class PController
 
     function profile()
     {
-
         global $validator;
         global $dataLayer;
-        global $member;
+        print_r($_SESSION['member']);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -123,7 +107,6 @@ class PController
             $email = trim($_POST['email']);
 
             if ($validator->validEmail($email)) {
-                $member->setEmail($email);
                 $_SESSION['member']->setEmail($email);
             } else {
                 $this->_f3->set('errors["email"]', "Email required.");
@@ -135,7 +118,6 @@ class PController
                 $seeking = $_POST['seeking'];
 
                 if ($validator->validGender($seeking)) {
-                    $member->setSeeking($seeking);
                     $_SESSION['member']->setSeeking($seeking);
                 } else {
                     $this->_f3->set('errors["seeking"]', "Please select a gender.");
@@ -147,7 +129,6 @@ class PController
                 $userState = $_POST['state'];
 
                 if ($validator->validState($userState)) {
-                    $member->setState($userState);
                     $_SESSION['member']->setState($userState);
                 } else {
                     $this->_f3->set('errors["state"]', "Please select a valid state.");
@@ -159,17 +140,18 @@ class PController
                 $bio = trim($_POST['bio']);
 
                 if (!empty($bio)) {
-                    $member->setBio($bio);
                     $_SESSION['member']->setBio($bio);
                 }
             }
 
             //if there are no errors, redirect
             if (empty($this->_f3->get('errors'))) {
-                if($member== Premium::class) {
+                if($_SESSION['member'] instanceof Premium){
                     $this->_f3->reroute('/interests');
                 }
-                $this->_f3->reroute('/summary');  //get
+                else {
+                    $this->_f3->reroute('/summary');//get
+                }
             }
         }
 

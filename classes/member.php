@@ -20,14 +20,14 @@ class Member
      */
 
 
-//    function __construct($fname, $lname, $age, $gender, $phone)
-//    {
-//        $this->_fname = $fname;
-//        $this->_lname = $lname;
-//        $this->_age = $age;
-//        $this->_gender = $gender;
-//        $this->_phone = $phone;
-//    }
+    function __construct($fname="unknown", $lname="unknown", $age="unknown", $gender="unknown", $phone="unknown")
+    {
+        $this->_fname = $fname;
+        $this->_lname = $lname;
+        $this->_age = $age;
+        $this->_gender = $gender;
+        $this->_phone = $phone;
+    }
 
     /**
      * Getter for Last name
