@@ -99,7 +99,7 @@ class PController
     {
         global $validator;
         global $dataLayer;
-        print_r($_SESSION['member']);
+        //print_r($_SESSION['member']);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -176,10 +176,11 @@ class PController
             if (isset($_POST['indoor'])) {
                 //get from post array
                 $userIndoor = $_POST['indoor'];
-                $_SESSION['indoorInterest'] = implode(" ", $userIndoor);
+                //$indoorString =implode(" ", $userIndoor);
 
                 if ($validator->validIndoor($userIndoor)) {
-                    $_SESSION['indoorInterest'] = implode(" ", $userIndoor);
+                    $indoorString =implode(" ", $userIndoor);
+                    $_SESSION['member']->setIndoorInterests($indoorString);
                 } else {
                     $this->_f3->set('errors["indoor"]', "Valid interests only.");
                 }
@@ -187,10 +188,11 @@ class PController
             if (isset($_POST['outdoor'])) {
                 //get from post array
                 $userOutdoor = $_POST['outdoor'];
-                $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
+                //$_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
 
                 if ($validator->validOutdoor($userOutdoor)) {
-                    $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
+                    $outdoorString =implode(" ", $userOutdoor);
+                    $_SESSION['member']->setOutdoorInterests($outdoorString);
                 } else {
                     $this->_f3->set('errors["outdoor"]', "Valid interests only.");
                 }
