@@ -44,35 +44,35 @@ class PController
             }
             //data is not valid, set error in f3 hive
             else {
-                $f3->set('errors["fname"]',"First name cannot be blank.");
+                $this->_f3->set('errors["fname"]',"First name cannot be blank.");
             }
             if($validator->validName($lname)) {
                 $member->setLname($lname);
             }
             //data is not valid, set error in f3 hive
             else {
-                $f3->set('errors["lname"]',"Last name cannot be blank.");
+                $this->_f3->set('errors["lname"]',"Last name cannot be blank.");
             }
             if($validator->validPhone($phone)) {
                 $member->setPhone($phone);
             }
             //data is not valid, set error in f3 hive
             else {
-                $f3->set('errors["phone"]',"Please type a valid phone number.");
+                $this->_f3->set('errors["phone"]',"Please type a valid phone number.");
             }
             if($validator->validName($pname)) {
                 $member->setPname($pname);
             }
             //data is not valid, set error in f3 hive
             else {
-                $f3->set('errors["pname"]',"Required. Please no spaces");
+                $this->_f3->set('errors["pname"]',"Required. Please no spaces");
             }
             if($validator->validAge($age)) {
                 $member->setAge($age);
             }
             //data is not valid, set error in f3 hive
             else {
-                $f3->set('errors["age"]',"Age must be in the range of 18-118.");
+                $this->_f3->set('errors["age"]',"Age must be in the range of 18-118.");
             }
 
             if(isset($_POST['gender'])) {
@@ -83,25 +83,25 @@ class PController
                     $member->setGender($userGender);
                 }
                 else{
-                    $f3->set('errors["gender"]', "Please select a gender.");
+                    $this->_f3->set('errors["gender"]', "Please select a gender.");
                 }
             }
 
             //if there are no errors, redirect
-            if(empty($f3->get('errors'))) {
+            if(empty($this->_f3->get('errors'))) {
                 $_SESSION['member'] = $member;
-                $f3->reroute('/profile');  //get
+                $this->_f3->reroute('/profile');  //get
             }
         }
 
-        $f3->set('genders', $dataLayer->getGender());
+        $this->_f3->set('genders', $dataLayer->getGender());
 
-        $f3->set('fname', isset($fname) ? $fname : "");
-        $f3->set('lname', isset($lname) ? $lname : "");
-        $f3->set('phone', isset($phone) ? $phone : "");
-        $f3->set('pname', isset($pname) ? $pname : "");
-        $f3->set('age', isset($age) ? $age : "");
-        $f3->set('userGender', isset($userGender) ? $userGender : "");
+        $this->_f3->set('fname', isset($fname) ? $fname : "");
+        $this->_f3->set('lname', isset($lname) ? $lname : "");
+        $this->_f3->set('phone', isset($phone) ? $phone : "");
+        $this->_f3->set('pname', isset($pname) ? $pname : "");
+        $this->_f3->set('age', isset($age) ? $age : "");
+        $this->_f3->set('userGender', isset($userGender) ? $userGender : "");
 
         $view = new Template();
         echo $view->render('views/personal-form.html');
@@ -123,7 +123,7 @@ class PController
                 $member->setEmail($email);
                 $_SESSION['member']->setEmail($email);
             } else {
-                $f3->set('errors["email"]', "Email required.");
+                $this->_f3->set('errors["email"]', "Email required.");
             }
 
             //get optional data
@@ -135,7 +135,7 @@ class PController
                     $member->setSeeking($seeking);
                     $_SESSION['member']->setSeeking($seeking);
                 } else {
-                    $f3->set('errors["seeking"]', "Please select a gender.");
+                    $this->_f3->set('errors["seeking"]', "Please select a gender.");
                 }
             }
 
@@ -147,7 +147,7 @@ class PController
                     $member->setState($userState);
                     $_SESSION['member']->setState($userState);
                 } else {
-                    $f3->set('errors["state"]', "Please select a valid state.");
+                    $this->_f3->set('errors["state"]', "Please select a valid state.");
                 }
             }
 
@@ -162,18 +162,18 @@ class PController
             }
 
             //if there are no errors, redirect
-            if (empty($f3->get('errors'))) {
-                $f3->reroute('/interests');  //get
+            if (empty($this->_f3->get('errors'))) {
+                $this->_f3->reroute('/interests');  //get
             }
         }
 
-        $f3->set('seekings', $dataLayer->getGender());
-        $f3->set('states', $dataLayer->getStates());
+        $this->_f3->set('seekings', $dataLayer->getGender());
+        $this->_f3->set('states', $dataLayer->getStates());
 
-        $f3->set('email', isset($email) ? $email : "");
-        $f3->set('seeking', isset($seeking) ? $seeking : "");
-        $f3->set('userState', isset($userState) ? $userState : "");
-        $f3->set('bio', isset($bio) ? $bio : "");
+        $this->_f3->set('email', isset($email) ? $email : "");
+        $this->_f3->set('seeking', isset($seeking) ? $seeking : "");
+        $this->_f3->set('userState', isset($userState) ? $userState : "");
+        $this->_f3->set('bio', isset($bio) ? $bio : "");
 
         $view = new Template();
         echo $view->render('views/profile-form.html');
@@ -193,7 +193,7 @@ class PController
                 if ($validator->validIndoor($userIndoor)) {
                     $_SESSION['indoorInterest'] = implode(" ", $userIndoor);
                 } else {
-                    $f3->set('errors["indoor"]', "Valid interests only.");
+                    $this->_f3->set('errors["indoor"]', "Valid interests only.");
                 }
             }
             if (isset($_POST['outdoor'])) {
@@ -204,19 +204,19 @@ class PController
                 if ($validator->validOutdoor($userOutdoor)) {
                     $_SESSION['outdoorInterest'] = implode(" ", $userOutdoor);
                 } else {
-                    $f3->set('errors["outdoor"]', "Valid interests only.");
+                    $this->_f3->set('errors["outdoor"]', "Valid interests only.");
                 }
             }
-            if (empty($f3->get('errors'))) {
+            if (empty($this->_f3->get('errors'))) {
                 //send to the summary page
-                $f3->reroute('/summary');
+                $this->_f3->reroute('/summary');
             }
         }
-        $f3->set('indoors', $dataLayer->getIndoorInterests());
-        $f3->set('outdoors', $dataLayer->getOutdoorInterests());
+        $this->_f3->set('indoors', $dataLayer->getIndoorInterests());
+        $this->_f3->set('outdoors', $dataLayer->getOutdoorInterests());
 
-        $f3->set('indoorInterest', isset($indoorInterest) ? $indoorInterest : "");
-        $f3->set('outdoorInterest', isset($outdoorInterest) ? $outdoorInterest : "");
+        $this->_f3->set('indoorInterest', isset($indoorInterest) ? $indoorInterest : "");
+        $this->_f3->set('outdoorInterest', isset($outdoorInterest) ? $outdoorInterest : "");
 
         $view = new Template();
         echo $view->render('views/interests-form.html');
