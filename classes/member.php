@@ -1,5 +1,8 @@
 <?php
 
+/** This class creates a member object
+ * Class Member
+ */
 class Member
 {
     private $_lname;
@@ -18,9 +21,8 @@ class Member
      * get pet name
      * @return string
      */
-
-
-    function __construct($fname="unknown", $lname="unknown", $age="unknown", $gender="unknown", $phone="unknown", $pname="unknown")
+    function __construct($fname="unknown", $lname="unknown", $age="unknown",
+                         $gender="unknown", $phone="unknown", $pname="unknown")
     {
         $this->_fname = $fname;
         $this->_lname = $lname;
@@ -205,5 +207,4 @@ class Member
     {
         $this->_pname = $pname;
     }
-
 }

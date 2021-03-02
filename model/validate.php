@@ -1,10 +1,17 @@
 <?php
 
-//contains validation functions
+/**
+ * contains validation functions
+ * Class PValidate
+ */
 class PValidate
 {
     private $_dataLayer;
 
+    /**
+     * Constructor for PValidate
+     * PValidate constructor
+     */
     function __construct()
     {
         $this->_dataLayer = new PDataLayer();

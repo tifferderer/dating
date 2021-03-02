@@ -35,7 +35,8 @@ Dating 2
                                 <p class="p-2 mb-0 border-bottom">Age: {{ @SESSION.member->getAge() }}</p>
                                 <p class="p-2 mb-0 border-bottom">Seeking: {{ @SESSION.member->getSeeking() }}</p>
                                 <check if="{{ @SESSION.member instanceof Premium }}">
-                                <p class="p-2 mb-0 border-bottom">Interests: {{ @SESSION.member->getIndoorInterests() }} {{ @SESSION.member->getOutdoorInterests() }}</p>
+                                <p class="p-2 mb-0 border-bottom"
+                                >Interests: {{ @SESSION.member->getIndoorInterests() }} {{ @SESSION.member->getOutdoorInterests() }}</p>
                                 </check>
                                 <p class="p-2 mb-0 border-bottom">Owner: {{ @SESSION.member->getFname() }}</p>
                                 <p class="p-2 mb-0 border-bottom">Phone: {{ @SESSION.member->getPhone() }}</p>

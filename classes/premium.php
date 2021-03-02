@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * This class creates a premium member object
+ * Class Premium extends member
+ */
 class Premium extends Member
 {
    private $_indoorInterests;
@@ -40,7 +44,4 @@ class Premium extends Member
     {
         $this->_outdoorInterests = $outdoorInterests;
     }
-
-
-
 }

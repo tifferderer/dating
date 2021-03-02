@@ -1,7 +1,9 @@
 <?php
 
 //controllers/controller.php
-
+/**
+ * Class PController
+ */
 class PController
 {
 
@@ -21,9 +23,11 @@ class PController
         echo $view->render('views/home.html');
     }
 
+    /**
+     * Display register page
+     */
     function register()
     {
-
         global $validator;
         global $dataLayer;
 
@@ -95,6 +99,9 @@ class PController
         echo $view->render('views/personal-form.html');
     }
 
+    /**
+     * Display profile page
+     */
     function profile()
     {
         global $validator;
@@ -167,8 +174,12 @@ class PController
         echo $view->render('views/profile-form.html');
     }
 
+    /**
+     * Display interest form page
+     */
     function interests()
-    { global $validator;
+    {
+        global $validator;
         global $dataLayer;
 
         if($_SERVER['REQUEST_METHOD']=='POST') {
@@ -212,6 +223,9 @@ class PController
         echo $view->render('views/interests-form.html');
     }
 
+    /**
+     * Display summary and clear sessions
+     */
     function summary() {
         $view = new Template();
         echo $view->render('views/summary.html');
