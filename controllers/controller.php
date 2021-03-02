@@ -36,8 +36,11 @@ class PController
             $phone = trim($_POST['phone']);
             $pname= trim($_POST['pname']);
             $age = trim($_POST['age']);
-            $premium = ($_POST['premium']);
 
+            //premium checkbox validation
+            if(isset($_POST['premium'])) {
+                $member = new Premium();
+            }
             //Validate
             if($validator->validName($fname)) {
                 $member->setFname($fname);
@@ -163,7 +166,10 @@ class PController
 
             //if there are no errors, redirect
             if (empty($this->_f3->get('errors'))) {
-                $this->_f3->reroute('/interests');  //get
+                if($member== Premium::class) {
+                    $this->_f3->reroute('/interests');
+                }
+                $this->_f3->reroute('/summary');  //get
             }
         }
 
