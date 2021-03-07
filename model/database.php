@@ -79,12 +79,32 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
 
     function getMembers()
     {
+        //Define the query
+        $sql = "SELECT * FROM member";
+        //Prepare the statement
+        $statement = $dbh->prepare($sql);
 
+        //Execute
+        $statement ->execute();
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $row) {
+        echo "First Name" . $row['fname'];}
     }
 
     function getMember($member_id)
     {
+        $sql = "SELECT * FROM member WHERE member_id = :id";
+        //Prepare the statement
+        $statement = $dbh->prepare($sql);
+        //Bind the parameters
+        $id = $member_id;
+        $statement ->bindParam(':id', $id, PDO::PARAM_INT);
+        //Execute
+        $statement ->execute();
 
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        echo "first name" . $row['fname'];
     }
 
     function getInterests($member_id)
