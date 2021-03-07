@@ -33,12 +33,48 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
      */
     function connect()
     {
-
+        require  $_SERVER['DOCUMENT_ROOT'].'/../config.php';
     }
 
     function insertMember()
     {
+        $sql = "INSERT INTO member(fname, lname, pname, age, gender, phone, email, state, seeking, bio, premium) " .
+ "VALUES (:fname, :lname, :pname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium)";
 
+        $statement = $dbh->prepare($sql);
+
+        //bind parameter
+        $fname= $_SESSION['member']->getFname();
+        $lname= $_SESSION['member']->getLname();
+        $pname= $_SESSION['member']->getPname();
+        $age= $_SESSION['member']->getAge();
+        $gender= $_SESSION['member']->getGenger();
+        $phone= $_SESSION['member']->getPhone();
+        $email= $_SESSION['member']->getEmail();
+        $state= $_SESSION['member']->getState();
+        $seeking= $_SESSION['member']->getSeeking();
+        $bio= $_SESSION['member']->getBio();
+        if($_SESSION['member'] instanceof Premium){
+            $premium = 1;
+        }
+        else {
+           $premium = 0;
+        }
+
+        $statement->bindParam(':fname', $fname, PDO::PARAM_STR);
+        $statement->bindParam(':lname', $lname, PDO::PARAM_STR);
+        $statement->bindParam(':pname', $pname, PDO::PARAM_STR);
+        $statement->bindParam(':age', $age, PDO::PARAM_STR);
+        $statement->bindParam(':gender', $gender, PDO::PARAM_STR);
+        $statement->bindParam(':phone', $phone, PDO::PARAM_STR);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->bindParam(':state', $state, PDO::PARAM_STR);
+        $statement->bindParam(':seeking', $seeking, PDO::PARAM_STR);
+        $statement->bindParam(':bio', $bio, PDO::PARAM_STR);
+        $statement->bindParam(':premium', $premium, PDO::PARAM_STR);
+
+        //execute
+        $statement->execute();
     }
 
     function getMembers()
@@ -53,6 +89,17 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
 
     function getInterests($member_id)
     {
+        $sql = "SELECT * FROM member_interest WHERE member_id = :id";
+        //Prepare the statement
+        $statement = $dbh->prepare($sql);
+        //Bind the parameters
+        $id = $member_id;
+        $statement ->bindParam(':id', $id, PDO::PARAM_INT);
+        //Execute
+        $statement ->execute();
+
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        echo "Interests" . $row['interest_id'];
 
     }
 }
