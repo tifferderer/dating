@@ -232,4 +232,12 @@ class PController
 
         session_destroy();
     }
+
+    /**
+     * Display admin page
+     */
+    function admin() {
+        $view = new Template();
+        echo $view->render('views/admin.html');
+    }
 }

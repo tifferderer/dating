@@ -15,6 +15,8 @@ require_once('vendor/autoload.php');
 //Start a session
 session_start();
 
+require  $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+
 //Create an instance of Base class
 $f3 = Base::instance();
 $validator = new PValidate();
@@ -53,6 +55,11 @@ $f3->route('GET|POST /interests', function ($f3) {
 $f3->route('GET /summary', function () {
     global $controller;
     $controller->summary();
+});
+
+$f3->route('GET /admin', function () {
+    global $controller;
+    $controller->admin();
 });
 
 //run fat free

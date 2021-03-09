@@ -33,11 +33,12 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
      */
     function connect()
     {
-        require  $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+        require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
     }
 
     function insertMember()
     {
+        global $dbh;
         $sql = "INSERT INTO member(fname, lname, pname, age, gender, phone, email, state, seeking, bio, premium) " .
  "VALUES (:fname, :lname, :pname, :age, :gender, :phone, :email, :state, :seeking, :bio, :premium)";
 
@@ -79,6 +80,7 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
 
     function getMembers()
     {
+        global $dbh;
         //Define the query
         $sql = "SELECT * FROM member";
         //Prepare the statement
@@ -94,6 +96,7 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
 
     function getMember($member_id)
     {
+        global $dbh;
         $sql = "SELECT * FROM member WHERE member_id = :id";
         //Prepare the statement
         $statement = $dbh->prepare($sql);
@@ -109,6 +112,7 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
 
     function getInterests($member_id)
     {
+        global $dbh;
         $sql = "SELECT * FROM member_interest WHERE member_id = :id";
         //Prepare the statement
         $statement = $dbh->prepare($sql);
