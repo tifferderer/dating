@@ -15,14 +15,14 @@ require_once('vendor/autoload.php');
 //Start a session
 session_start();
 
-require  $_SERVER['DOCUMENT_ROOT'].'/../config.php';
+require $_SERVER['DOCUMENT_ROOT'].'/../config.php';
 
 //Create an instance of Base class
 $f3 = Base::instance();
 $validator = new PValidate();
 $dataLayer = new PDataLayer();
-$database = new Database();
 $controller = new PController($f3);
+$database = new PDatabase();
 
 $f3->set('DEBUG', 3);
 
@@ -42,7 +42,6 @@ $f3->route('GET|POST /register', function ($f3) {
 $f3->route('GET|POST /profile', function ($f3) {
     global $controller;
     $controller->profile();
-
 });
 
 //define an interests form route

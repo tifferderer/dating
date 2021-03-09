@@ -106,6 +106,7 @@ class PController
     {
         global $validator;
         global $dataLayer;
+        global $database;
         //print_r($_SESSION['member']);
 
         if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -157,6 +158,7 @@ class PController
                     $this->_f3->reroute('/interests');
                 }
                 else {
+                   $database->insertMember();
                     $this->_f3->reroute('/summary');//get
                 }
             }
@@ -181,6 +183,7 @@ class PController
     {
         global $validator;
         global $dataLayer;
+        global $database;
 
         if($_SERVER['REQUEST_METHOD']=='POST') {
             //if condiments selected
@@ -210,6 +213,15 @@ class PController
             }
             if (empty($this->_f3->get('errors'))) {
                 //send to the summary page
+                $database->insertMember();
+                foreach ($userIndoor as $indoor) {
+                    $id = $database->getInterestId($indoor);
+                    $database->insertInterests($id);
+                }
+                foreach ($userOutdoor as $outdoor) {
+                    $id = $database->getInterestId($outdoor);
+                    $database->insertInterests($id);
+                }
                 $this->_f3->reroute('/summary');
             }
         }
@@ -227,6 +239,10 @@ class PController
      * Display summary and clear sessions
      */
     function summary() {
+
+//        global $database;
+//        $database->insertMember();
+
         $view = new Template();
         echo $view->render('views/summary.html');
 

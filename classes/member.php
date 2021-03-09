@@ -14,6 +14,7 @@ class Member
     private $_state;
     private $_seeking;
     private $_bio;
+    private $_memberId;
 
     private $_pname;
 
@@ -207,4 +208,22 @@ class Member
     {
         $this->_pname = $pname;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getMemberId()
+    {
+        return $this->_memberId;
+    }
+
+    /**
+     * @param mixed $memberId
+     */
+    public function setMemberId($memberId)
+    {
+        $this->_memberId = $memberId;
+    }
+
+
 }
