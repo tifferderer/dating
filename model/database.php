@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * Class PDatabase
+ * This class inserts/shows data with all the
+ * database tables
+ */
 class PDatabase
 {
     /*
@@ -31,11 +37,18 @@ FOREIGN KEY(member_id) REFERENCES member(member_id),
 FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
 );
      */
+    /**
+     * Connect function
+     */
     function connect()
     {
         require $_SERVER['DOCUMENT_ROOT'] . '/../config.php';
     }
 
+    /**
+     * This method inserts member data
+     * into a member table
+     */
     function insertMember()
     {
         global $dbh;
@@ -80,6 +93,12 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
         $_SESSION['member']->setMemberId($id);
     }
 
+    /**
+     * This method grabs an interest id from the
+     * interest table using the interest name
+     * @param $interest string
+     * @return mixed the id of the interest
+     */
     function getInterestId($interest)
     {
         global $dbh;
@@ -95,6 +114,11 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
         return $row['interest_id'];
     }
 
+    /**
+     * this method inserts the interest id and member id into
+     * the member_interest table
+     * @param $interest int
+     */
     function insertInterests($interest)
     {
         global $dbh;
@@ -113,6 +137,10 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
         $statement->execute();
     }
 
+    /**
+     * Grab all members from the database
+     * @return mixed
+     */
     function getMembers()
     {
         global $dbh;
@@ -128,6 +156,11 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
         return $result;
     }
 
+    /**
+     * grab a specific member's information
+     * @param $member_id int
+     * @return mixed the member
+     */
     function getMember($member_id)
     {
         global $dbh;
@@ -144,26 +177,36 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
         return $row;
     }
 
+    /**
+     * Grab the interests from the database in a
+     * comma-separated list
+     * @param $member_id int
+     * @return string
+     */
     function getInterests($member_id)
     {
         global $dbh;
         $sql = "SELECT interest.interest FROM member_interest
     JOIN interest on interest.interest_id = member_interest.interest_id
 WHERE member_id = :id";
+
         //Prepare the statement
         $statement = $dbh->prepare($sql);
+
         //Bind the parameters
         $id = $member_id;
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
         //Execute
         $statement->execute();
-$x = array();
+        $tableData = array();
         $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+
         foreach ($row as $input) {
-     //       $input = implode(", ", $input);
-            $x[]= $input['interest'];
+            $tableData[]= $input['interest'];
         }
-        $response = (implode(", ", $x));
+        $response = (implode(", ", $tableData));
+
         return $response;
     }
 }
