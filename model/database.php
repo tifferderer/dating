@@ -117,7 +117,7 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
     {
         global $dbh;
         //Define the query
-        $sql = "SELECT * FROM member";
+        $sql = "SELECT * FROM member ORDER BY lname";
         //Prepare the statement
         $statement = $dbh->prepare($sql);
 

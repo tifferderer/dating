@@ -36,7 +36,6 @@ Pet dating website
         <table id = "service-table" class = "display mb-4">
             <thead>
             <tr>
-
                 <td>ID</td>
                 <td>Name</td>
                 <td>Age</td>
@@ -47,7 +46,6 @@ Pet dating website
                 <td>Seeking</td>
                 <td>Premium</td>
                 <td>Interests</td>
-
             </tr>
             </thead>
 
@@ -63,7 +61,9 @@ Pet dating website
                     <td>{{ @customer['state'] }}</td>
                     <td>{{ @customer['gender'] }}</td>
                     <td>{{ @customer['seeking'] }}</td>
-                    <td>{{ @customer['premium'] }}</td>
+                    <td><input type="checkbox"
+                        <check if="@customer['premium'] == 1">
+                            checked</check> > </td>
                     <td>{{ @customer['interests'] }}</td>
                 </tr>
             </repeat>
@@ -82,7 +82,11 @@ Pet dating website
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
 
 <script>
-    $('#service-table').DataTable();
+    $('#service-table').DataTable(
+        {
+        "order": [[ 1, "asc" ]]
+    }
+    );
 </script>
 
 </body>
