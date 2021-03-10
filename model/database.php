@@ -88,9 +88,11 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
 
         $statement->bindParam(':id', $interest, PDO::PARAM_STR);
 
+        echo $interest;
         //execute
         $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+        return $row['interest_id'];
     }
 
     function insertInterests($interest)
@@ -100,7 +102,8 @@ FOREIGN KEY(interest_id) REFERENCES interest(interest_id)
         $sql = "INSERT INTO member_interest VALUES (:memberId, :interestId)";
         $statement = $dbh->prepare($sql);
 
-        $memberId = $_SESSION['member']->getMemberId();
+        $interest= intval($interest);
+        $memberId = intval($_SESSION['member']->getMemberId());
 
         //bind parameter
         $statement->bindParam(':memberId', $memberId, PDO::PARAM_STR);
@@ -154,8 +157,13 @@ WHERE member_id = :id";
         $statement->bindParam(':id', $id, PDO::PARAM_INT);
         //Execute
         $statement->execute();
-
-        $row = $statement->fetch(PDO::FETCH_ASSOC);
-        return $row;
+$x = array();
+        $row = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($row as $input) {
+     //       $input = implode(", ", $input);
+            $x[]= $input['interest'];
+        }
+        $response = (implode(", ", $x));
+        return $response;
     }
 }

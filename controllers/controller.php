@@ -214,13 +214,17 @@ class PController
             if (empty($this->_f3->get('errors'))) {
                 //send to the summary page
                 $database->insertMember();
-                foreach ($userIndoor as $indoor) {
-                    $id = $database->getInterestId($indoor);
-                    $database->insertInterests($id);
+                if (isset($userIndoor)) {
+                    foreach ($userIndoor as $indoor) {
+                         $id= $database->getInterestId($indoor);
+                        $database->insertInterests($id);
+                    }
                 }
-                foreach ($userOutdoor as $outdoor) {
-                    $id = $database->getInterestId($outdoor);
-                    $database->insertInterests($id);
+                if (isset($userOutdoor)) {
+                    foreach ($userOutdoor as $outdoor) {
+                        $id = $database->getInterestId($outdoor);
+                        $database->insertInterests($id);
+                    }
                 }
                 $this->_f3->reroute('/summary');
             }
@@ -240,9 +244,6 @@ class PController
      */
     function summary() {
 
-//        global $database;
-//        $database->insertMember();
-
         $view = new Template();
         echo $view->render('views/summary.html');
 
@@ -253,6 +254,33 @@ class PController
      * Display admin page
      */
     function admin() {
+        global $database;
+
+        $customers = array();
+        $profiles = array();
+        $interestChoices = array();
+        $result = $database ->getMembers();
+
+        foreach ($result as $row) {
+            $profiles['full'] = $row['fname'] . " ". $row['lname'];
+            $profiles['id'] = $row['member_id'];
+            $profiles['email'] = $row['email'];
+            $profiles['age'] = $row['age'];
+            $profiles['phone'] = $row['phone'];
+            $profiles['state'] = $row['state'];
+            $profiles['gender'] = $row['gender'];
+            $profiles['seeking'] = $row['seeking'];
+            $profiles['premium'] = $row['premium'];
+
+             $interests = $database->getInterests($row['member_id']);
+
+            $profiles['interests'] = $interests;
+
+            $customers[] = $profiles;
+        }
+
+        $this->_f3->set('customers', $customers);
+
         $view = new Template();
         echo $view->render('views/admin.html');
     }

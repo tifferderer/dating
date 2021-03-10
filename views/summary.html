@@ -32,7 +32,7 @@ Dating 2
                     <div class="row mb-3">
                         <div class="col-6">
                             <div class="border-top border-left border-right rounded">
-                                <p class="p-2 mb-0 border-bottom">Pet Name: {{ @SESSION.member->getMemberId() }}{{ @SESSION.member->getPname() }}</p>
+                                <p class="p-2 mb-0 border-bottom">Pet Name: {{ @SESSION.member->getPname() }}</p>
                                 <p class="p-2 mb-0 border-bottom">Age: {{ @SESSION.member->getAge() }}</p>
                                 <p class="p-2 mb-0 border-bottom">Seeking: {{ @SESSION.member->getSeeking() }}</p>
                                 <check if="{{ @SESSION.member instanceof Premium }}">

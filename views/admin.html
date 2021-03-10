@@ -30,11 +30,9 @@ Pet dating website
 <!-- *********** Landing page ***********-->
 <div class="container-fluid border-top border-bottom border-light m-4">
     <h1>4 Paws Only</h1>
-    <h3>Membership</h3>
-
-    <!-- Content Row
-    <div class="vh-100">
-        <h1>Orders</h1>
+    <!-- Content Row-->
+    <div class="">
+        <h3>Membership</h3>
         <table id = "service-table" class = "display mb-4">
             <thead>
             <tr>
@@ -58,13 +56,13 @@ Pet dating website
             <repeat group = "{{ @customers }}" value = "{{ @customer }}">
                 <tr>
                     <td>{{ @customer['id'] }}</td>
-                    <td>{{ @customer['name'] }}</td>
+                    <td>{{ @customer['full'] }}</td>
                     <td>{{ @customer['age'] }}</td>
                     <td>{{ @customer['phone'] }}</td>
                     <td>{{ @customer['email'] }}</td>
                     <td>{{ @customer['state'] }}</td>
                     <td>{{ @customer['gender'] }}</td>
-                    <td>{{ @customer['seeking] }}</td>
+                    <td>{{ @customer['seeking'] }}</td>
                     <td>{{ @customer['premium'] }}</td>
                     <td>{{ @customer['interests'] }}</td>
                 </tr>
@@ -72,7 +70,7 @@ Pet dating website
 
             </tbody>
         </table>
-    </div>-->
+    </div>
 
 </div> <!--container -->
 
